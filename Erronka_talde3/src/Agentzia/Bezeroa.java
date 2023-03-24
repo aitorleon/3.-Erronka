@@ -9,7 +9,7 @@ public abstract class Bezeroa {
 	protected String izena;
 	protected String abizena1;
 	protected String abizena2;
-	protected String jaiotze_data;
+	protected Date jaiotze_data;
 	protected String email;
 	protected String telefono;
 	
@@ -18,11 +18,11 @@ public abstract class Bezeroa {
 		this.izena="";
 		this.abizena1="";
 		this.abizena2="";
-		this.jaiotze_data="";
+		this.jaiotze_data= new Date();
 		this.email="";
 		this.telefono="";
 	}
-	public Bezeroa(String n, String izn, String abz1, String abz2, String jdata, String em, String tlf) {
+	public Bezeroa(String n, String izn, String abz1, String abz2, Date jdata, String em, String tlf) {
 		this.nan=n;
 		this.izena=izn;
 		this.abizena1=abz1;
@@ -58,10 +58,10 @@ public abstract class Bezeroa {
 	public void setAbizena2(String abizena2) {
 		this.abizena2 = abizena2;
 	}
-	public String getJaiotze_data() {
+	public Date getJaiotze_data() {
 		return jaiotze_data;
 	}
-	public void setJaiotze_data(String jaiotze_data) {
+	public void setJaiotze_data(Date jaiotze_data) {
 		this.jaiotze_data = jaiotze_data;
 	}
 	public String getEmail() {

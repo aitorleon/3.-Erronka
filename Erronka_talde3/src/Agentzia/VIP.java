@@ -1,5 +1,7 @@
 package Agentzia;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class VIP extends Bezeroa{
@@ -32,7 +34,29 @@ public class VIP extends Bezeroa{
 	@Override
 	public void irakurri(Scanner teklatua) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("sartu zure NAN:");
+		this.nan=teklatua.next();
+		System.out.println("sartu izena:");
+		this.izena=teklatua.next();
+		System.out.println("sartu lehenengo abizena:");
+		this.abizena1=teklatua.next();
+		System.out.println("sartu bigarren abizena:");
+		this.abizena2=teklatua.next();
+		System.out.println("Sartu jaiotze data(yyyy/mm/dd):");
+		try {
+			this.jaiotze_data = new SimpleDateFormat("dd/MM/yyyy").parse(teklatua.nextLine());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("sartu emaila:");
+		this.email=teklatua.next();
+		System.out.println("sartu telefono zenbakia:");
+		this.telefono=teklatua.next();
+		System.out.println("sartu puntuak:");
+		this.puntuak=teklatua.nextInt();
+		System.out.println("sartu nahi duzun beherapena(%):");
+		this.beherapenak=teklatua.next();
 	}
 	@Override
 	public void pantailaratu() {
