@@ -1,0 +1,11 @@
+.icono-instagram, .icono-mail{
+	text-decoration: none;
+	color: black;
+}
+.iconos img:hover{
+	transform: scale(2.2);
+	transition: .5s;
+}
+.iconos a {
+	margin-right: 10px;
+}
