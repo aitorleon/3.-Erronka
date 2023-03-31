@@ -12,6 +12,7 @@ public abstract class Bezeroa {
 	protected Date jaiotze_data;
 	protected String email;
 	protected String telefono;
+	protected String mota;
 	
 	public Bezeroa(){
 		this.nan="";
@@ -21,8 +22,9 @@ public abstract class Bezeroa {
 		this.jaiotze_data= new Date();
 		this.email="";
 		this.telefono="";
+		this.mota = "";
 	}
-	public Bezeroa(String n, String izn, String abz1, String abz2, Date jdata, String em, String tlf) {
+	public Bezeroa(String n, String izn, String abz1, String abz2, Date jdata, String em, String tlf, String mo) {
 		this.nan=n;
 		this.izena=izn;
 		this.abizena1=abz1;
@@ -30,6 +32,7 @@ public abstract class Bezeroa {
 		this.jaiotze_data=jdata;
 		this.email=em;
 		this.telefono=tlf;
+		this.mota = mo;
 	}
 	public Bezeroa(String n) {
 		this.nan=n;
@@ -76,6 +79,14 @@ public abstract class Bezeroa {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	/**
+	 * 
+	 * @param teklatua gura dugun eremuak eskaneatzeko eta gordetzeko
+	 * @author Iker Elorrieta
+	 */
 	public abstract void irakurri(Scanner teklatua);
+	/**
+	 * Gure bezeroen datuak pantailaratzeko
+	 */
 	public abstract void pantailaratu();
 }
