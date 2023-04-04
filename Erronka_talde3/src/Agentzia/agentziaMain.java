@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -28,12 +29,26 @@ public class agentziaMain {
 		/********************************************************/
 		String idLogin,vipOhikoa;
 		Boolean encontradoVip=false,encontradoOhikoa = false;
-		boolean estantziaerr = false;
+		boolean estantziaerr = false, tiketEros = false, jardueraarr = false;
 		Bezeroa b;
 		int i = 0,j = 0, kont=0;
 		//////DB BUELTA ESTANTZIA TAULA/////
 		int id_Estantzia,Kapazitatea, Balorazioa;
 		String NAN, Izena, Mota;
+		/////DB BUELTA VIP TAULA/////
+		int puntuak;
+		double beherapenak;
+		/////DB BUELTA OHIKOA TAULA/////
+		int gonbidatukop;
+		/////DB BUELTA TIKETAK TAULA/////
+		int id_Tiket,Prezioa;
+		String Jesarlekua,Wifi,Jesarleku_Mota,TV;
+		/////DB BUELTA HELMUGA TAULA/////
+		int id_Helmuga;
+		String Izena1;
+		/////DB BUELTA BEZEROA TAULA/////
+		String Abizena1, Abizena2,Telefonoa,Email;
+		Date Jaiotze_Data;
 		
 		//KONEXIOA DATU BASEAREKIN
 		try{
@@ -68,7 +83,7 @@ public class agentziaMain {
 				}
 			rs = st.executeQuery("Select * FROM bidaiagentzia.tiketa;");
 			while (rs.next()){
-				Tiketak t1 = new Tiketak(rs.getInt("id_Tiket"),rs.getString("NAN"),rs.getDouble("Prezioa"),rs.getString("Jesarlekua"),rs.getString("Wifi"),rs.getString("Jesarleku_Mota"),rs.getString("TV"));
+				Tiketak t1 = new Tiketak(rs.getInt("id_Tiket"),rs.getString("NAN"),rs.getInt("Prezioa"),rs.getString("Jesarlekua"),rs.getString("Wifi"),rs.getString("Jesarleku_Mota"),rs.getString("TV"));
 				aTiketak.add(t1);
 				}
 			rs = st.executeQuery("SELECT v.Puntuak, v.Beherapenak, b.* from vip v, bezeroa b where v.NAN = b.NAN;");
@@ -156,7 +171,7 @@ public class agentziaMain {
 					System.out.println("|| 9. Jarduera bat kantzelatu                  ||");
 					System.out.println("|| 10. Zure puntuak ikusi.                     ||");
 					System.out.println("|| 11. Zure beherapenak ikusi.                 ||");
-					System.out.println("|| 12. Irten                                   ||");
+					System.out.println("|| 0. Irten                                   ||");
 					aukeraVip = teklatua.nextInt();
 					switch (aukeraVip) {
 					case 1:
@@ -250,7 +265,7 @@ public class agentziaMain {
 						}
 						break;
 					case 5:
-						boolean tiketEros = false;
+						tiketEros = false;
 						Tiketak t1 = new Tiketak();
 						System.out.println("** TIKET BAT EROSI **");
 						System.out.println("______________________");
@@ -261,7 +276,7 @@ public class agentziaMain {
 						System.out.println("Zure tiketaren erosketa egin da.");
 						break;
 					case 6:
-						boolean jardueraarr = false;
+						jardueraarr = false;
 						int idHelmu;
 						kont = 0;
 						System.out.println("Hauek dira eskuragarri dauden jarduerak");
@@ -389,11 +404,11 @@ public class agentziaMain {
 							System.out.println("Prezio finala: ");
 						}
 						break;
-					case 12:
-						System.out.println("Plazer bat izan da" + aVIP.get(konktVip).getIzena() + ", gero arte.");
+					case 0:
+						System.out.println("Plazer bat izan da " + aVIP.get(konktVip).getIzena() + ", gero arte.");
 						break;
 					}
-				}while(aukeraVip > 0 || aukeraVip < 13);
+				}while(aukeraVip!=0);
 			}else if (encontradoOhikoa) {
 				int aukeraOhikoa = 0;
 				do {
@@ -498,7 +513,7 @@ public class agentziaMain {
 						}
 						break;
 					case 5:
-						boolean tiketEros = false;
+						tiketEros = false;
 						Tiketak t1 = new Tiketak();
 						System.out.println("** TIKET BAT EROSI **");
 						System.out.println("______________________");
@@ -509,14 +524,13 @@ public class agentziaMain {
 						System.out.println("Zure tiketaren erosketa egin da.");
 						break;
 					case 6:
-						boolean jardueraarr = false;
+						jardueraarr = false;
 						int idHelmu;
 						kont = 0;
 						System.out.println("Hauek dira eskuragarri dauden jarduerak");
 						for (int w = 0; w < aJarduera.size(); w++) {
 							if (aJarduera.get(w).getEskuragarri().equalsIgnoreCase("bai")) {
 								aJarduera.get(w).pantailaratuJarduera();
-								jardueraarr = true;
 							}
 						}
 						System.out.println("Idatzi erreserbatu nahi duzun jardueraren ID-a");
@@ -557,21 +571,6 @@ public class agentziaMain {
 						Balorazioa = e1.getBalorazioa();
 						st.executeUpdate("INSERT INTO estantzia VALUES ('"+id_Estantzia+"','"+NAN+"','"+Izena+"','"+Kapazitatea+"','"+Mota+"','"+Balorazioa+"');");
 					}
-					/*String consultaVip="";
-					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
-					Statement st = conexion.createStatement();
-					consultaReserba = "DELETE FROM vip";
-					st.execute(consultaReserba);
-					for (VIP e : aVIP) {
-						Estantzia e1 = aEstantzia.get(i1);
-						id_Estantzia = e1.getId_Estantzia();
-						NAN = e1.getNAN();
-						Izena = e1.getIzena();
-						Kapazitatea = e1.getKapazitatea();
-						Mota = e1.getMota();
-						Balorazioa = e1.getBalorazioa();
-						st.executeUpdate("INSERT INTO estantzia VALUES ('"+id_Estantzia+"','"+NAN+"','"+Izena+"','"+Kapazitatea+"','"+Mota+"','"+Balorazioa+"');");
-					}*/
 					/*ResultSet rs1 = st.executeQuery("SELECT * FROM bdalumnos.alumnos;");*/
 					// cierro la conexion
 					st.close();
@@ -582,6 +581,93 @@ public class agentziaMain {
 				e.printStackTrace();
 				System.out.println("Error de Conexión");
 				}
+			}
+			else if (tiketEros)  {
+				try {
+					String consultaTiketa="";
+					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
+					Statement st = conexion.createStatement();
+					consultaTiketa = "DELETE FROM tiketa";
+					st.execute(consultaTiketa);
+					for (int i4 = 0; i4<aTiketak.size(); i4++) {
+						Tiketak t1 = aTiketak.get(i4);
+						id_Tiket = t1.getId_tiket();
+						NAN = t1.getNan();
+						Prezioa = t1.getPrezioa();
+						Jesarlekua = t1.getJesarlekua();
+						Wifi = t1.getWifi();
+						Jesarleku_Mota = t1.getJesarlekua();
+						TV = t1.getTV();
+						st.executeUpdate("INSERT INTO tiketa VALUES ('"+id_Tiket+"','"+NAN+"','"+Prezioa+"','"+Jesarlekua+"','"+Wifi+"','"+Jesarleku_Mota+"','"+TV+"');");
+					}
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("Konexio Errorea");
+				}
+				
+			}
+			else if (jardueraarr) {
+				
+			}
+			try {
+				String consultaVip="";
+				Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
+				Statement st = conexion.createStatement();
+				consultaVip = "DELETE FROM vip";
+				st.execute(consultaVip);
+				for (int i2 = 0; i2<aVIP.size(); i2++) {
+					VIP v1 = aVIP.get(i2);
+					NAN = v1.getNan();
+					puntuak = v1.getPuntuak();
+					beherapenak = v1.getBeherapenak();
+					st.executeUpdate("INSERT INTO vip VALUES ('"+NAN+"','"+puntuak+"','"+beherapenak+"');");
+				}
+				String consultaOhikoa="";
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
+				st = conexion.createStatement();
+				consultaOhikoa = "DELETE FROM ohikoa";
+				st.execute(consultaOhikoa);
+				for (int i3 = 0; i3<aVIP.size(); i3++) {
+					Ohikoa o1 = aOhikoa.get(i3);
+					NAN = o1.getNan();
+					gonbidatukop = o1.getGonbidatukop();
+					st.executeUpdate("INSERT INTO ohikoa VALUES ('"+NAN+"','"+gonbidatukop+"');");
+				}
+				
+				String consultaHelmuga="";
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
+				st = conexion.createStatement();
+				consultaHelmuga = "DELETE FROM helmuga";
+				st.execute(consultaHelmuga);
+				for (int i5 = 0; i5<aVIP.size(); i5++) {
+					Helmuga h1 = aHelmuga.get(i5);
+					id_Helmuga = h1.getId_Helmuga();
+					id_Estantzia = h1.getId_Estantzia();
+					Izena = h1.getIzena();
+					st.executeUpdate("INSERT INTO helmuga VALUES ('"+id_Helmuga+"','"+id_Estantzia+"','"+Izena+"');");
+				}
+				String consultaBezeroa="";
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
+				st = conexion.createStatement();
+				consultaBezeroa = "DELETE FROM bezeroa";
+				st.execute(consultaBezeroa);
+				for (int i6 = 0; i6<aVIP.size(); i6++) {
+					Bezeroa b2 = aBezeroa.get(i6);
+					NAN = b2.getNan();
+					Izena = b2.getIzena();
+					Abizena1 = b2.getAbizena1();
+					Abizena2 = b2.getAbizena2();
+					Jaiotze_Data = b2.getJaiotze_data();
+					Telefonoa = b2.getTelefono();
+					Email = b2.getEmail();
+					Mota = b2.getMota();
+					st.executeUpdate("INSERT INTO bezeroa VALUES ('"+NAN+"','"+Izena+"','"+Abizena1+"','"+Abizena2+"','"+Jaiotze_Data+"','"+Telefonoa+"','"+Email+"','"+Mota+"');");
+				}
+			}
+			catch (SQLException e ) {
+				e.printStackTrace();
+				System.out.println("Konexio Errorea");
 			}
 	}
 }

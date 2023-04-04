@@ -34,6 +34,12 @@ public abstract class Bezeroa {
 		this.telefono=tlf;
 		this.mota = mo;
 	}
+	public String getMota() {
+		return mota;
+	}
+	public void setMota(String mota) {
+		this.mota = mota;
+	}
 	public Bezeroa(String n) {
 		this.nan=n;
 	}

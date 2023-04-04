@@ -7,7 +7,7 @@ public class Tiketak extends Bezeroa{
 	private int id_tiket;
 	private String TV;
 	private String Wifi;
-	private double prezioa;
+	private int prezioa;
 	private String tipo_asiento;
 	private String jesarlekua;
 	
@@ -22,7 +22,7 @@ public class Tiketak extends Bezeroa{
 	}
 	//Tiketak t1 = new Tiketak(rs.getInt("id_Tiket"),rs.getString("NAN"),rs.getDouble("Prezioa"),rs.getString("Jesarlekua"),rs.getString("Wifi"),rs.getString("Jesarleku_Mota"),rs.getString("TV"));
 
-	public Tiketak(int idt,String n,  double prz,String jes,String wifi,String ta, String tv) {
+	public Tiketak(int idt,String n,  int prz,String jes,String wifi,String ta, String tv) {
 		super(n);
 		this.id_tiket=idt;
 		this.TV=tv;
@@ -40,6 +40,9 @@ public class Tiketak extends Bezeroa{
 		this.tipo_asiento = t.tipo_asiento;
 		this.jesarlekua = t.jesarlekua;
 	}
+	public String getWifi() {
+		return Wifi;
+	}
 	public int getId_tiket() {
 		return id_tiket;
 	}
@@ -47,6 +50,9 @@ public class Tiketak extends Bezeroa{
 		this.id_tiket = id_tiket;
 	}
 	public String isTV() {
+		return TV;
+	}
+	public String getTV() {
 		return TV;
 	}
 	public void setTV(String tV) {
@@ -58,10 +64,10 @@ public class Tiketak extends Bezeroa{
 	public void setWifi(String wifi) {
 		Wifi = wifi;
 	}
-	public double getPrezioa() {
+	public int getPrezioa() {
 		return prezioa;
 	}
-	public void setPrezioa(double prezioa) {
+	public void setPrezioa(int prezioa) {
 		this.prezioa = prezioa;
 	}
 	public String getTipo_asiento() {
