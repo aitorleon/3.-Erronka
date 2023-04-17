@@ -51,52 +51,7 @@ public class agentziaMain {
 		Date Jaiotze_Data;
 		
 		//KONEXIOA DATU BASEAREKIN
-		try{
-			 Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
-			// si se ha conectado correctamente
-			System.out.println("ondo");
-			Statement st = conexion.createStatement();
-			
-			
-			ResultSet rs = st.executeQuery("SELECT * FROM bidaiagentzia.estantzia;");
-			
-			
-			
-			while (rs.next()){
-				Estantzia e1 = new Estantzia(rs.getInt("id_Estantzia"),rs.getString("NAN"),rs.getString("Izena"),rs.getInt("Kapazitatea"),rs.getString("Mota"),rs.getInt("Balorazioa"));
-				aEstantzia.add(e1);
-				}
-			rs = st.executeQuery("Select * FROM bidaiagentzia.helmuga;");
-			while (rs.next()){
-				Helmuga h1 = new Helmuga(rs.getInt("id_Helmuga"),rs.getInt("id_Estantzia"),rs.getString("Izena"));
-				aHelmuga.add(h1);
-				}
-			rs = st.executeQuery("SELECT b.NAN, j.* from bezeroa b, estantzia e, helmuga h, jarduera j where b.NAN = e.NAN and e.id_Estantzia = h.id_Estantzia and h.id_Helmuga = j.id_Helmuga;");
-			while (rs.next()){
-				Jarduera j1 = new Jarduera(rs.getString("NAN"),rs.getInt("id_Jarduera"),rs.getInt("id_Helmuga"),rs.getString("Izena"),rs.getString("Mota"),rs.getInt("Balorazioa"), rs.getString("Eskuragarri"));
-				aJarduera.add(j1);
-				}
-			rs = st.executeQuery("SELECT o.GonbidatuKop, b.* from ohikoa o, bezeroa b where o.NAN = b.NAN;");
-			while (rs.next()){
-				Ohikoa o1 = new Ohikoa(rs.getInt("GonbidatuKop"),rs.getString("NAN"), rs.getString("Abizena1"), rs.getString("Abizena2"), rs.getDate("Jaiotze_Data"), rs.getString("Telefonoa"), rs.getString("Email"), rs.getString("Mota"));
-				aOhikoa.add(o1);
-				}
-			rs = st.executeQuery("Select * FROM bidaiagentzia.tiketa;");
-			while (rs.next()){
-				Tiketak t1 = new Tiketak(rs.getInt("id_Tiket"),rs.getString("NAN"),rs.getInt("Prezioa"),rs.getString("Jesarlekua"),rs.getString("Wifi"),rs.getString("Jesarleku_Mota"),rs.getString("TV"));
-				aTiketak.add(t1);
-				}
-			rs = st.executeQuery("SELECT v.Puntuak, v.Beherapenak, b.* from vip v, bezeroa b where v.NAN = b.NAN;");
-			while (rs.next()){
-				VIP v1 = new VIP(rs.getInt("Puntuak"),rs.getInt("Beherapenak"),rs.getString("NAN"),rs.getString("Izena"),rs.getString("Abizena1"),rs.getString("Abizena2"),rs.getDate("Jaiotze_Data"),rs.getString("Telefonoa"),rs.getString("Email"),rs.getString("mota"));
-				aVIP.add(v1);
-				}
-			rs.close();
-			st.close();
-		}
-		catch (SQLException eq) {
-			eq.printStackTrace();
-		}
+		dbKonexioa(aEstantzia, aHelmuga, aJarduera, aOhikoa, aVIP, aTiketak);
 		////////////////////////////////////
 		try {
 			FileInputStream fis = new FileInputStream("jarduerak.dat");
@@ -171,7 +126,7 @@ public class agentziaMain {
 					System.out.println("|| 9. Jarduera bat kantzelatu                  ||");
 					System.out.println("|| 10. Zure puntuak ikusi.                     ||");
 					System.out.println("|| 11. Zure beherapenak ikusi.                 ||");
-					System.out.println("|| 0. Irten                                   ||");
+					System.out.println("|| 0. Irten                                    ||");
 					aukeraVip = teklatua.nextInt();
 					switch (aukeraVip) {
 					case 1:
@@ -273,7 +228,6 @@ public class agentziaMain {
 						t1.setId_tiket(aTiketak.get(aTiketak.size() - 1).getId_tiket() + 1);
 						aTiketak.add(t1);
 						tiketEros = true;
-						System.out.println("Zure tiketaren erosketa egin da.");
 						break;
 					case 6:
 						jardueraarr = false;
@@ -386,23 +340,11 @@ public class agentziaMain {
 						break;
 					case 11:
 						int deskontua = 0;
-						System.out.println("Kontuan izanda " + aVIP.get(i).getPuntuak() + " dituzula...");
-						if (aVIP.get(i).getPuntuak() > 1 && aVIP.get(i).getPuntuak() < 25) {
-							deskontua = 10;
-							System.out.println("Zure deskontua %" + deskontua + "koa da.");
-							System.out.println("Prezio finala: ");
-						}else if (aVIP.get(i).getPuntuak() > 25 && aVIP.get(i).getPuntuak() < 50) {
-							deskontua = 20;
-							System.out.println("Zure deskonktua %" + deskontua + "koa da.");
-							System.out.println("Prezio finala: ");
-						}else if (aVIP.get(i).getPuntuak() > 50 && aVIP.get(i).getPuntuak() < 80) {
-							deskontua = 25;
-							System.out.println("Zure deskonktua %" + deskontua + "koa da.");
-							System.out.println("Prezio finala: ");
-						}else if (aVIP.get(i).getPuntuak() > 80 && aVIP.get(i).getPuntuak() < 100) {
-							System.out.println("Zure deskontua %" + deskontua + "koda da.");
-							System.out.println("Prezio finala: ");
-						}
+						System.out.println("Kontuan izanda " + aVIP.get(i).getPuntuak() + " puntu dituzula...");
+						deskontua = deskontuaFun(aVIP.get(i).getPuntuak());
+						Tiketak tiket = aTiketak.get(i);
+						kalkulatuDesk(tiket, deskontua);
+						System.out.println("Prezio finala: " + aTiketak.get(i).getPrezioa());
 						break;
 					case 0:
 						System.out.println("Plazer bat izan da " + aVIP.get(konktVip).getIzena() + ", gero arte.");
@@ -669,5 +611,83 @@ public class agentziaMain {
 				e.printStackTrace();
 				System.out.println("Konexio Errorea");
 			}
+	}
+
+	private static void kalkulatuDesk(Tiketak tiket, int deskontua) {
+		if (deskontua == 10) {
+			tiket.setPrezioa((tiket.getPrezioa() * deskontua) / 100);
+		}else if (deskontua == 20) {
+			tiket.setPrezioa((tiket.getPrezioa() * deskontua) / 100);
+		}else if (deskontua == 25) {
+			tiket.setPrezioa((tiket.getPrezioa() * deskontua) / 100);
+		}else if (deskontua == 30) {
+			tiket.setPrezioa((tiket.getPrezioa() * deskontua) / 100);
+		}
+	}
+
+	public static int deskontuaFun(int puntuak) {
+		int deskontua=0;
+		if (puntuak > 1 && puntuak < 25) {
+			deskontua = 10;
+		}else if (puntuak > 25 && puntuak < 50) {
+			deskontua = 20;
+		}else if (puntuak > 50 && puntuak < 80) {
+			deskontua = 25;
+		}else if (puntuak > 80 && puntuak < 100) {
+			deskontua = 30;
+		}
+		System.out.println("Zure deskontua %" + deskontua + "koda da.");
+		return deskontua;
+	}
+
+	private static void dbKonexioa(ArrayList<Estantzia> aEstantzia, ArrayList<Helmuga> aHelmuga,
+			ArrayList<Jarduera> aJarduera, ArrayList<Ohikoa> aOhikoa, ArrayList<VIP> aVIP,
+			ArrayList<Tiketak> aTiketak) {
+		try{
+			 Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
+			// si se ha conectado correctamente
+			System.out.println("ondo");
+			Statement st = conexion.createStatement();
+			
+			
+			ResultSet rs = st.executeQuery("SELECT * FROM bidaiagentzia.estantzia;");
+			
+			
+			
+			while (rs.next()){
+				Estantzia e1 = new Estantzia(rs.getInt("id_Estantzia"),rs.getString("NAN"),rs.getString("Izena"),rs.getInt("Kapazitatea"),rs.getString("Mota"),rs.getInt("Balorazioa"));
+				aEstantzia.add(e1);
+				}
+			rs = st.executeQuery("Select * FROM bidaiagentzia.helmuga;");
+			while (rs.next()){
+				Helmuga h1 = new Helmuga(rs.getInt("id_Helmuga"),rs.getInt("id_Estantzia"),rs.getString("Izena"));
+				aHelmuga.add(h1);
+				}
+			rs = st.executeQuery("SELECT b.NAN, j.* from bezeroa b, estantzia e, helmuga h, jarduera j where b.NAN = e.NAN and e.id_Estantzia = h.id_Estantzia and h.id_Helmuga = j.id_Helmuga;");
+			while (rs.next()){
+				Jarduera j1 = new Jarduera(rs.getString("NAN"),rs.getInt("id_Jarduera"),rs.getInt("id_Helmuga"),rs.getString("Izena"),rs.getString("Mota"),rs.getInt("Balorazioa"), rs.getString("Eskuragarri"));
+				aJarduera.add(j1);
+				}
+			rs = st.executeQuery("SELECT o.GonbidatuKop, b.* from ohikoa o, bezeroa b where o.NAN = b.NAN;");
+			while (rs.next()){
+				Ohikoa o1 = new Ohikoa(rs.getInt("GonbidatuKop"),rs.getString("NAN"), rs.getString("Abizena1"), rs.getString("Abizena2"), rs.getDate("Jaiotze_Data"), rs.getString("Telefonoa"), rs.getString("Email"), rs.getString("Mota"));
+				aOhikoa.add(o1);
+				}
+			rs = st.executeQuery("Select * FROM bidaiagentzia.tiketa;");
+			while (rs.next()){
+				Tiketak t1 = new Tiketak(rs.getInt("id_Tiket"),rs.getString("NAN"),rs.getInt("Prezioa"),rs.getString("Jesarlekua"),rs.getString("Wifi"),rs.getString("Jesarleku_Mota"),rs.getString("TV"));
+				aTiketak.add(t1);
+				}
+			rs = st.executeQuery("SELECT v.Puntuak, v.Beherapenak, b.* from vip v, bezeroa b where v.NAN = b.NAN;");
+			while (rs.next()){
+				VIP v1 = new VIP(rs.getInt("Puntuak"),rs.getInt("Beherapenak"),rs.getString("NAN"),rs.getString("Izena"),rs.getString("Abizena1"),rs.getString("Abizena2"),rs.getDate("Jaiotze_Data"),rs.getString("Telefonoa"),rs.getString("Email"),rs.getString("mota"));
+				aVIP.add(v1);
+				}
+			rs.close();
+			st.close();
+		}
+		catch (SQLException eq) {
+			eq.printStackTrace();
+		}
 	}
 }

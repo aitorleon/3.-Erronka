@@ -51,7 +51,7 @@ public class VIP extends Bezeroa{
 		this.abizena2=teklatua.next();
 		System.out.println("Idatzi jaiotze data(yyyy/mm/dd):");
 		try {
-			this.jaiotze_data = new SimpleDateFormat("dd/MM/yyyy").parse(teklatua.nextLine());
+			this.jaiotze_data = new SimpleDateFormat("dd/MM/yyyy").parse(teklatua.next());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -19,7 +19,7 @@ public abstract class Bezeroa {
 		this.izena="";
 		this.abizena1="";
 		this.abizena2="";
-		this.jaiotze_data= new Date();
+		this.jaiotze_data= new Date(0-0-0);
 		this.email="";
 		this.telefono="";
 		this.mota = "";

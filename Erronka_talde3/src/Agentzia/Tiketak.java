@@ -84,34 +84,36 @@ public class Tiketak extends Bezeroa{
 	}
 	@Override
 	public void irakurri(Scanner teklatua) {
-		int prezioTik = 0;
+		this.prezioa = 0;
 		// TODO Auto-generated method stub
 		System.out.println("**Ongi Etorri gure Tiket Erosketara**");
 		System.out.println("**Zer motatako tiketa nahi duzu? Turista/Business/Lehen Klasea**");
 		this.tipo_asiento = teklatua.next();
 		if (this.tipo_asiento.equalsIgnoreCase("turista")) {
-			prezioTik = prezioTik + 300;
+			this.prezioa= this.prezioa + 300;
 		}else if (this.tipo_asiento.equalsIgnoreCase("business")) {
-			prezioTik = prezioTik + 600;
+			this.prezioa = this.prezioa + 600;
 		}else if (this.tipo_asiento.equalsIgnoreCase("lehen klasea")) {
-			prezioTik = prezioTik + 1000;
+			this.prezioa = this.prezioa + 1000;
 		}
 		System.out.println("**Zure jesarlekua leku zehatz batean egotea gustautuko litzaizuke? (0tik 300era eta LETRA BAT IDATZIZ)**");
 		this.jesarlekua = teklatua.next();
 		System.out.println("**Telebista edukitzea gustatuko litzaizuke? (Bai/Ez)**");
 		this.TV = teklatua.next();
 		if (this.TV.equalsIgnoreCase("bai")) {
-			prezioTik = prezioTik + 40;
+			this.prezioa = this.prezioa + 40;
 		}else {
-			prezioTik = prezioTik;
+			this.prezioa = this.prezioa;
 		}
 		System.out.println("**Wifia edukitzea gustatuko litzaizuke? (Bai/Ez)**");
 		this.Wifi = teklatua.next();
 		if (this.Wifi.equalsIgnoreCase("bai")) {
-			prezioTik = prezioTik + 50;
+			this.prezioa = this.prezioa + 50;
 		}else {
-			prezioTik = prezioTik;
+			this.prezioa = this.prezioa;
 		}
+		
+		System.out.println("Eskerrikasko, tiketaren prezioa " + this.prezioa + " da.");
 	}
 
 	@Override
