@@ -1,0 +1,105 @@
+<estantziak>
+	<hotelak>	
+		<hotela id="1" izarrak="4">
+			<irudia>argazkiak/hotela1.jpg</irudia>
+			<izena>BLEES</izena>
+			<gelak>
+				<gela mota="premium">
+					<kapazitatea>4</kapazitatea>
+					<zerbitzuak>
+						<tv/>
+						<gela_zerbitzua/>
+						<buffet/>
+						<igerilekua/>
+					</zerbitzuak>
+				</gela>
+			</gelak>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Pepito</egilea>
+					<komentarioa>Super gustura egon naiz</komentarioa>
+					<izarrak>4.5</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Pepito3</egilea>
+					<komentarioa>Komunean papelik ez</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Kaiet</egilea>
+					<komentarioa>Komunean papel gehiegi</komentarioa>
+					<izarrak>5</izarrak>
+				</balorazioa>
+			</balorazioak>
+		</hotela>
+
+		<hotela id="2" izarrak="3">
+			<irudia>argazkiak/hotela2.jpg</irudia>
+			<izena>Hotel izen 2</izena>
+			<gelak>
+				<gela mota="normala">
+					<kapazitatea>2</kapazitatea>
+					<zerbitzuak>
+						<gela_zerbitzua/>
+						<buffet/>
+					</zerbitzuak>
+				</gela>
+			</gelak>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Paco Sanz</egilea>
+					<komentarioa>Grande Auronplay</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Mikel</egilea>
+					<komentarioa>Luken kalera</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Iker</egilea>
+					<komentarioa>Komunean papel gehiegi</komentarioa>
+					<izarrak>5</izarrak>
+				</balorazioa>
+			</balorazioak>
+		</hotela>
+
+		<hotela id="3" izarrak="3">
+			<irudia>argazkiak/hotela3.jpg</irudia>
+			<izena>Hotel izena 3</izena>
+			<gelak>
+				<gela mota="normala">
+					<kapazitatea>2</kapazitatea>
+					<zerbitzuak>
+						<tv/>
+						<gela_zerbitzua/>
+						<buffet/>
+					</zerbitzuak>
+				</gela>
+			</gelak>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Jose Juan</egilea>
+					<komentarioa>Gooooooooooood</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>MOMO</egilea>
+					<komentarioa>Nashee</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Aitor</egilea>
+					<komentarioa>Ez naiz gustura egon</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+			</balorazioak>
+		</hotela>
+
+	</hotelak>
+	<motelak>
+	</motelak>
+	<apartamentua>
+	</apartamentua>
+</estantziak>
+
