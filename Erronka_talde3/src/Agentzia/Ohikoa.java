@@ -17,8 +17,8 @@ public class Ohikoa extends Bezeroa{
 		super(n);
 		this.gonbidatukop=gk;
 	}
-	public Ohikoa (int gbkp, String nan, String ab1, String ab2, Date jd, String telf, String email, String mo) {
-		super(nan,ab1,ab2,mo, jd,telf,email,mo);
+	public Ohikoa (int gbkp, String nan, String iz, String ab1, String ab2, Date jd, String telf, String email, String mo) {
+		super(nan,iz,ab1,ab2,jd,telf,email,mo);
 		this.gonbidatukop = gbkp;
 	}
 

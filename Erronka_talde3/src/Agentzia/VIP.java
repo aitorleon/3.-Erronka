@@ -51,7 +51,7 @@ public class VIP extends Bezeroa{
 		this.abizena2=teklatua.next();
 		System.out.println("Idatzi jaiotze data(yyyy/mm/dd):");
 		try {
-			this.jaiotze_data = new SimpleDateFormat("dd/MM/yyyy").parse(teklatua.next());
+			this.jaiotze_data = new SimpleDateFormat("yyyy/mm/dd").parse(teklatua.next());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,8 +60,6 @@ public class VIP extends Bezeroa{
 		this.email=teklatua.next();
 		System.out.println("Idatzi zure telefono zenbakia:");
 		this.telefono=teklatua.next();
-		System.out.println("Idatzi zenbat puntu dituzun:");
-		this.puntuak=teklatua.nextInt();
 	}
 	@Override
 	public void pantailaratu() {
