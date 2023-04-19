@@ -129,7 +129,7 @@ public class agentziaMain {
 					System.out.println("|| 9. Jarduera bat kantzelatu                  ||");
 					System.out.println("|| 10. Zure puntuak ikusi.                     ||");
 					System.out.println("|| 11. Zure beherapenak ikusi.                 ||");
-					System.out.println("|| 12. Irten                                    ||");
+					System.out.println("|| 12. Irten                                   ||");
 					aukeraVip = teklatua.nextInt();
 					switch (aukeraVip) {
 					case 1:
@@ -148,7 +148,7 @@ public class agentziaMain {
 									e.estantziaPantailaratu();
 								}
 							}
-						}else {
+						}else{
 							System.out.println("ERROR, ez dituzu erreserbarik.");
 							System.out.println("Erreserba bat egin nahi baduzu, 4 aukeran klik egin.");
 						}
@@ -164,7 +164,7 @@ public class agentziaMain {
 								kont++;
 							}
 						}
-						if (encontradoTi == true) {
+						if (encontradoTi) {
 							for (Tiketak t : aTiketak) {
 								if (idLogin.equals(t.getNan())) {
 									t.pantailaratu();
@@ -193,12 +193,11 @@ public class agentziaMain {
 							}
 						}else {
 							System.out.println("ERROR, ez duzu jarduerarik antolatu.");
-							System.out.println("Tiketa erosi nahi baduzu, 5. aukeran klik egin.");
+							System.out.println("Tiketa erosi nahi baduzu, 6. aukeran klik egin.");
 						}
 						break;
 					case 4:
 						boolean estantziaAur = false;
-						estantziaerr = false;
 						int idEs;
 						System.out.println("Huek dira ikusgai dauden estantziak.");
 						for (Estantzia t : aEstantzia) {
@@ -208,9 +207,9 @@ public class agentziaMain {
 							}
 						}
 						if (estantziaAur == false) {
-							System.out.println("___________________________________________________________");
+							System.out.println("-----------------------------------------------------------");
 							System.out.println("Sentitzen dugu baina estantzia guztiak erreserbatuta daude.");
-							System.out.println("___________________________________________________________");
+							System.out.println("-----------------------------------------------------------");
 						}else {
 							System.out.println("Idatzi zein estantzia erreserbatu nahi duzun estantziaren IDa.");
 							idEs = teklatua.nextInt();
@@ -301,7 +300,7 @@ public class agentziaMain {
 							idTik = teklatua.nextInt();
 							while (!encontradoTik && kont < aTiketak.size()) {
 								if (aTiketak.get(kont).getId_tiket()==idTik) {
-									aTiketak.get(kont).setNan(null);
+									aTiketak.remove(kont);
 									encontradoTik = true;
 									System.out.println("Zure tiketa borratu da.");
 								}else {
@@ -520,9 +519,11 @@ public class agentziaMain {
 					String consultaReserba="";
 					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
 					Statement st = conexion.createStatement();
+					consultaReserba = "DELETE FROM helmuga";
+					st.execute(consultaReserba);
 					consultaReserba = "DELETE FROM estantzia";
 					st.execute(consultaReserba);
-					for (int i1=0;i<aEstantzia.size();i1++) {
+					for (int i1=0;i1<aEstantzia.size();i1++) {
 						Estantzia e1 = aEstantzia.get(i1);
 						id_Estantzia = e1.getId_Estantzia();
 						NAN = e1.getNAN();
@@ -530,10 +531,10 @@ public class agentziaMain {
 						Kapazitatea = e1.getKapazitatea();
 						Mota = e1.getMota();
 						Balorazioa = e1.getBalorazioa();
-						st.executeUpdate("INSERT INTO estantzia VALUES ('"+id_Estantzia+"','"+NAN+"','"+Izena+"','"+Kapazitatea+"','"+Mota+"','"+Balorazioa+"');");
-						
-					}
-					String consultaHelmuga="";
+						consultaReserba = "INSERT INTO estantzia VALUES ('"+id_Estantzia+"','"+NAN+"','"+Izena+"','"+Kapazitatea+"','"+Mota+"','"+Balorazioa+"');";
+						st.execute(consultaReserba);
+						}
+					/*String consultaHelmuga="";
 					conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
 					st = conexion.createStatement();
 					consultaHelmuga = "DELETE FROM helmuga";
@@ -544,7 +545,7 @@ public class agentziaMain {
 						id_Estantzia = h1.getId_Estantzia();
 						Izena = h1.getIzena();
 						st.executeUpdate("INSERT INTO helmuga VALUES ('"+id_Helmuga+"','"+id_Estantzia+"','"+Izena+"');");
-					}
+					}*/
 					/*ResultSet rs1 = st.executeQuery("SELECT * FROM bdalumnos.alumnos;");*/
 					// cierro la conexion
 					st.close();
@@ -553,7 +554,7 @@ public class agentziaMain {
 				catch (SQLException e){
 				// si NO se ha conectado correctamente
 				e.printStackTrace();
-				System.out.println("Error de Conexión");
+				System.out.println("Error de ERRESERBA/ESTANTZIA");
 				}
 			}
 			else if (tiketEros)  {
@@ -572,12 +573,13 @@ public class agentziaMain {
 						Wifi = t1.getWifi();
 						Jesarleku_Mota = t1.getJesarlekua();
 						TV = t1.getTV();
-						st.executeUpdate("INSERT INTO tiketa VALUES ('"+id_Tiket+"','"+NAN+"','"+prezioa+"','"+Jesarlekua+"','"+Wifi+"','"+Jesarleku_Mota+"','"+TV+"');");
+						consultaTiketa = "INSERT INTO tiketa VALUES ('"+id_Tiket+"','"+NAN+"','"+prezioa+"','"+Jesarlekua+"','"+Wifi+"','"+Jesarleku_Mota+"','"+TV+"');";
+						st.executeUpdate(consultaTiketa);
 					}
 				}
 				catch (SQLException e) {
-					e.printStackTrace();
-					System.out.println("Konexio Errorea");
+					e.printStackTrace();	
+					System.out.println("ERROR TIKET");
 				}
 				
 			}
@@ -626,7 +628,7 @@ public class agentziaMain {
 			}
 			catch (SQLException e ) {
 				e.printStackTrace();
-				System.out.println("Konexio Errorea");
+				System.out.println("ERROR VIP/OHIKOA");
 			}
 			if (erregistroaVip || erregistroaOhikoa) {
 				try {
@@ -649,7 +651,7 @@ public class agentziaMain {
 					}
 				}catch (SQLException e ) {
 					e.printStackTrace();
-					System.out.println("Konexio Errorea");
+					System.out.println("ERROR ERREGISTROA");
 				}
 			}
 	}
