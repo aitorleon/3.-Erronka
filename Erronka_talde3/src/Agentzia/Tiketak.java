@@ -2,7 +2,7 @@ package Agentzia;
 
 import java.util.Scanner;
 
-public class Tiketak extends Bezeroa{
+public class Tiketak extends Bezeroa implements Bez{
 
 	private int id_tiket;
 	private String TV;
@@ -122,7 +122,8 @@ public class Tiketak extends Bezeroa{
 		}else {
 			this.prezioa = this.prezioa;
 		}
-		
+		int puntuak = 0;
+		puntuak = puntuak + 5;
 		System.out.println("Eskerrikasko, tiketaren prezioa " + this.prezioa + " da.");
 	}
 
@@ -144,5 +145,43 @@ public class Tiketak extends Bezeroa{
 			System.out.println("**Ez daukazu wifirik**");
 		}
 		System.out.println("---------------------------------------------------------");
+	}
+	
+	public static int deskontuaFun(int puntuak) {
+		int deskontua=0;
+		if (puntuak > 1 && puntuak < 25) {
+			deskontua = 10;
+		}else if (puntuak > 25 && puntuak < 50) {
+			deskontua = 20;
+		}else if (puntuak > 50 && puntuak < 80) {
+			deskontua = 25;
+		}else if (puntuak > 80 && puntuak < 100) {
+			deskontua = 30;
+		}
+		System.out.println("Zure deskontua %" + deskontua + "koda da.");
+		return deskontua;
+	}
+	
+	public static double kalkulatuDesk(Tiketak tiket, int deskontua) {
+		double prezioFin = 0;
+		if (deskontua == 10) {
+			prezioFin = (tiket.getPrezioa() * 0.90);
+		}else if (deskontua == 20) {
+			prezioFin = ((tiket.getPrezioa() * 0.80));
+		}else if (deskontua == 25) {
+			prezioFin = ((tiket.getPrezioa() * 0.75));
+		}else if (deskontua == 30) {
+			prezioFin = ((tiket.getPrezioa() * 0.70));
+		}
+		return prezioFin;
+	}
+
+	@Override
+	public double kalkulatuTotala(double kalkulatuDesk) {
+		// TODO Auto-generated method stub
+		double prezioFin = kalkulatuDesk;
+		prezioFin = (prezioFin + (prezioFin*BEZ));
+		
+		return prezioFin;
 	}
 }
