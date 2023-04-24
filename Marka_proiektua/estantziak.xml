@@ -96,9 +96,173 @@
 			</balorazioak>
 		</hotela>
 
+
+		<hotela id="4" izarrak="3">
+			<irudia>argazkiak/hotela4.jpg</irudia>
+			<izena>Hotel izena 4</izena>
+			<gelak>
+				<gela mota="normala">
+					<kapazitatea>2</kapazitatea>
+					<zerbitzuak>
+						<tv/>
+						<gela_zerbitzua/>
+						<buffet/>
+					</zerbitzuak>
+				</gela>
+			</gelak>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Jose Juan</egilea>
+					<komentarioa>Gooooooooooood</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>MOMO</egilea>
+					<komentarioa>Nashee</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Aitor</egilea>
+					<komentarioa>Ez naiz gustura egon</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+			</balorazioak>
+		</hotela>
+
+
+		<hotela id="5" izarrak="3">
+			<irudia>argazkiak/hotela5.jpg</irudia>
+			<izena>Hotel izena 5</izena>
+			<gelak>
+				<gela mota="normala">
+					<kapazitatea>2</kapazitatea>
+					<zerbitzuak>
+						<tv/>
+						<gela_zerbitzua/>
+						<buffet/>
+					</zerbitzuak>
+				</gela>
+			</gelak>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Jose Juan</egilea>
+					<komentarioa>Gooooooooooood</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>MOMO</egilea>
+					<komentarioa>Nashee</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Aitor</egilea>
+					<komentarioa>Ez naiz gustura egon</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+			</balorazioak>
+		</hotela>
+
 	</hotelak>
 	<motelak>
-	</motelak>
+		<motela id="6" izarrak="3">
+			<irudia>argazkiak/motela1.jpg</irudia>
+			<izena>Amáre</izena>
+			<gelak>
+				<gela mota="premium">
+					<kapazitatea>3</kapazitatea>
+					<zerbitzuak>
+						<tv/>
+						<gela_zerbitzua/>
+						<buffet/>
+						<jacuzzi/>
+					</zerbitzuak>
+				</gela>
+			</gelak>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Carlos Alberto</egilea>
+					<komentarioa>Ikaragarria, oso gomendatua.</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea></egilea>
+					<komentarioa>Oso motel hona, ohe oso erosoak.</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Aitor</egilea>
+					<komentarioa>Oso gustura egon naiz.</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+			</balorazioak>
+			</motela>
+
+			<motela id="7" izarrak="3">
+			<irudia>argazkiak/motela2.jpg</irudia>
+			<izena>NH Sevilla Plaza de Armas</izena>
+			<gelak>
+				<gela mota="normala">
+					<kapazitatea>3</kapazitatea>
+					<zerbitzuak>
+						<tv/>
+						<gela_zerbitzua/>
+						<buffet/>
+					</zerbitzuak>
+				</gela>
+			</gelak>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Jose Blanco</egilea>
+					<komentarioa>Nahiko ondo dago baina oso garestia.</komentarioa>
+					<izarrak>3</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Paquito Gonzalez</egilea>
+					<komentarioa>Ez zait gustatu.</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Wolfangkillers</egilea>
+					<komentarioa>Ez zait askorik gustatu. </komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+			</balorazioak>
+			</motela>
+
+			<motela id="8" izarrak="4">
+			<irudia>argazkiak/motela3.jpg</irudia>
+			<izena>Lola Suite Motel</izena>
+			<gelak>
+				<gela mota="premium">
+					<kapazitatea>2</kapazitatea>
+					<zerbitzuak>
+						<tv/>
+						<gela_zerbitzua/>
+						<buffet/>
+						<jacuzzi/>
+					</zerbitzuak>
+				</gela>
+			</gelak>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Leandro Gomez</egilea>
+					<komentarioa>Asko gustatu zait, gela zerbitzu oso hona.</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Ramon Ramirez</egilea>
+					<komentarioa>Oso gustura egon naiz.</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Paco Gonzalez</egilea>
+					<komentarioa>Ez zait askorik gustatu. </komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+			</balorazioak>
+			</motela>
+
+		</motelak>
 	<apartamentua>
 	</apartamentua>
 </estantziak>
