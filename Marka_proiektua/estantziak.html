@@ -39,15 +39,14 @@
 
 
 <div class="container-fluid ">
-  <label for="izarrak">Filtrar por estrellas:</label>
-  <select name="izarrak" id="izarrak" onchange="izarrak_filtroa(value)">
-    <option value="">Todos</option>
-    <option value="1">1 izar</option>
-    <option value="2">2 estrellas</option>
-    <option value="3">3 estrellas</option>
-    <option value="4">4 estrellas</option>
-    <option value="5">5 estrellas</option>
-  </select>
+  <button onclick="filtrarPorValoracion(1)">1 estrella</button>
+  <button onclick="filtrarPorValoracion(2)">2 estrellas</button>
+  <button onclick="filtrarPorValoracion(3)">3 estrellas</button>
+  <button onclick="filtrarPorValoracion(4)">4 estrellas</button>
+  <button onclick="filtrarPorValoracion(5)">5 estrellas</button>
+  <button onclick="mostrarTodasLasOpciones()">Mostrar todas las opciones</button>
+
+
   <h1>HOTELAK</h1>
   <div class="row justify-content-around mt-3" id="cardak">
     
@@ -130,8 +129,7 @@ function nire_funtzioa(xml) {
 
 
     
-    //function applyFilter2() {
-    //var nodes = document.evaluate("//hotela[@izarrak]", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+
   }
   
 };
@@ -157,60 +155,37 @@ function nire_funtzioa(xml) {
   }
 }*/
 
- function izarrak_filtroa(izarrak) {
-        var x, i, txt;
-        //xmlDoc = xml.responseXML;
-        var card = document.getElementById("card_zona");
-        card_zona.innerHTML = "";
-        txt = "";
-        var parser = new DOMParser();
-        var list = xmlDoc.evaluate("//*/hotela[@izarrak='" + izarrak + "']", xmlDoc, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-        if (list.snapshotLength > 0) {
-            var cards = document.getElementById("card_zona");
-            for (var i = 0; i < list.snapshotLength; i++) {
-                var izarrak = list.snapshotItem(i).getAttribute("izarrak")[0].innerHTML;
-                var Izena = list.snapshotItem(i).getElementsByTagName("Izena")[0].innerHTML;
-                var Irudia = list.snapshotItem(i).getElementsByTagName("argazkia")[0].innerHTML;
-                var Iritziak = list.snapshotItem(i).getElementsByTagName("Iritziak")[0].innerHTML;
+function filtrarPorValoracion(valoracion) {
+  // Selecciona todos los elementos con la clase "paquete"
+  var paquetes = document.getElementsByClassName("paquete");
 
-                console.log(list.snapshotItem(i).getElementsByTagName("Izena")[0].innerHTML);
-
-                var carda = '<div class="col"><div class="card"><img src="' + Irudia + '" class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">' + Izena;
-                for (var p = 0; p < izarrak; p++) {
-                    carda += ' <img src="Irudiak/Izarra.png" style="width: 15px; height: 15px;"/>';
-                }
-                carda += '</h5><p class="card-text">' + Iritziak + '</p></div></div></div>';
-
-                card_zona.insertAdjacentHTML('beforeend', carda)
-            }
-        } else {
-            alert("Ez dago zure aukerak betetzen duen filtrorik");
-        }
-
+  // Itera sobre los elementos y oculta los que no tienen la valoración deseada
+  for (var i = 0; i < paquetes.length; i++) {
+    var paquete = paquetes[i];
+    var xpath = ".//valoracion[. < " + valoracion + "]";
+    var resultado = document.evaluate(xpath, paquete, null, XPathResult.BOOLEAN_TYPE, null);
+    if (resultado.booleanValue) {
+      paquete.style.display = "none";
+    } else {
+      paquete.style.display = "block";
     }
+  }
+}
 
-    function denak() {
-        var cards = document.getElementById("card_zona");
-        card_zona.innerHTML = "";
+function mostrarTodasLasOpciones() {
+  var paquetes = document.getElementsByClassName("paquete");
+  for (var i = 0; i < paquetes.length; i++) {
+    var paquete = paquetes[i];
+    paquete.style.display = "block";
+  }
+}
 
-        for (var i = 0; i < xmlDoc.getElementsByTagName("hotela").length; i++) {
-            var izarrak = xmlDoc.getElementsByTagName("hotela")[i].getAttribute("izarrak");
-            var Izena = xmlDoc.getElementsByTagName("Izena")[i].innerHTML;
-            var Irudia = xmlDoc.getElementsByTagName("argazkia")[i].innerHTML;
-            var Iritziak = xmlDoc.getElementsByTagName("Iritziak")[i].innerHTML;
 
-            var carda = '<div class="col"><div class="card"><img src="' + Irudia + '" class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">' + Izena;
-            for (var p = 0; p < izarrak; p++) {
-                carda += ' <img src="Irudiak/Izarra.png" style="width: 15px; height: 15px;"/>';
-            }
-            carda += '</h5><p class="card-text">' + Iritziak + '</p></div></div></div>';
 
-            card_zona.insertAdjacentHTML('beforeend', carda)
-        }
-    }
 
-    document.getElementById("denak").onclick = function () { denak() };
 
 </script> 
 
 </html>
+
+
