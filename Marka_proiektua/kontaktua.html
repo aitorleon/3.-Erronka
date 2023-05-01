@@ -12,8 +12,154 @@
 	<header>
 		<script type="text/javascript" src="js/menu.js"></script>
 	</header>
+
+<div class="container">
+  <form>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <div class="form-group">
+          <label for="name">Izena:</label>
+          <input type="text" class="form-control form-control-lg" id="name" placeholder="Sartu Izena">
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="form-group">
+          <label for="email">Korreo Electronikoa:</label>
+          <input type="email" class="form-control form-control-lg" id="email" placeholder="Sartu Korreo Electronikoa">
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-xs-12 col-md-6">
+        <div class="form-group">
+          <label for="phone">Telefono zenbakia:</label>
+          <input type="tel" class="form-control form-control-lg" id="phone" placeholder="Sartu Telefono zenbakia">
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="message">Mezua:</label>
+          <textarea class="form-control form-control-lg" id="message" rows="3" placeholder="Mezua"></textarea>
+        </div>
+      </div>
+    </div>
+   
+     <button type="submit" class="btn btn-success btn-rounded mt-4" id="submit-btn">Bialdu</button>
+      <button type="reset" class="btn btn-danger btn-rounded ml-2 mt-4">Garbitu</button>
+     </form>
+</div>
+
+
+
+<div class="container my-5">
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header bg-primary" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+             <b>Zeintzuk dira bidaiatu nahi dudan helmugara sartzeko baldintzak?</b>
+            </button>
+          </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            Sarrera-baldintzak helmugaren arabera aldatu egiten dira eta baliozko pasaportea, bisa, txerto-ziurtagiria edo COVID-19 proba negatiboak izan daitezke. Bidaiatu aurretik zure helmugarako baldintza zehatzak egiaztatzea gomendatzen dugu.
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header bg-secondary" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="btn btn-link text-white collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <b>Nola ordaindu dezaket nire bidaia?</b>
+            </button>
+          </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            Hainbat ordainketa-metodo onartzen ditugu, hala nola kreditu txartela, banku-transferentzia edo eskudirutan ordainketa. Mesedez, kontsultatu gure langileekin ordainketa-metodoen xehetasun zehatzak lortzeko.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-success" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link text-white collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">              
+             <b> Zein da bertan behera uzteko politika?</b>
+            </button>
+          </h2>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            Gure baliogabetze-politika alda daiteke hautatu duzun bidaia-paketearen arabera. Erreserba egin aurretik bertan behera uzteko baldintzak arretaz irakurtzea gomendatzen dugu eta informazio gehiago lortzeko gure langileei kontsultatzea gomendatzen dizugu.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-warning" id="headingfour">
+          <h2 class="mb-0">
+            <button class="btn btn-link text-white collapsed" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">              
+              <b>Nire bidaia baino zenbat denbora lehenago egin behar dut erreserba?</b>
+            </button>
+          </h2>
+        </div>
+        <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample">
+          <div class="card-body">
+           Bidaia ahalik eta aldez aurretik erreserbatzea gomendatzen dugu, batez ere denboraldi altu batean bidaiatzeko asmoa baduzu.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-danger" id="headingfive">
+          <h2 class="mb-0">
+            <button class="btn btn-link text-white collapsed" type="button" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">              
+            <b> Beharrezkoa al da bidaia asegurua izatea?</b>
+            </button>
+          </h2>
+        </div>
+        <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordionExample">
+          <div class="card-body">          
+            Nahiz eta derrigorrezkoa ez den bidaia-asegurua izatea, bidaian zehar ustekabeko gertakarietatik babesteko kontuan hartzea gomendatzen dugu.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-info" id="headingsix">
+          <h2 class="mb-0">
+            <button class="btn btn-link text-white collapsed" type="button" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">              
+             <b>Nire bidaiarako deskontu edo promoziorik al dago?</b>
+            </button>
+          </h2>
+        </div>
+        <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordionExample">
+          <div class="card-body">
+            Deskontuak eta promozio bereziak eskaintzen ditugu urteko garai ezberdinetan. Mesedez, kontsultatu gure langileekin zure bidaiarako dauden eskaintzak ezagutzeko.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+	
 	<footer>
     	<script type="text/javascript" src="js/footer.js"></script>
-  	</footer>		
+  	</footer>	
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
 </body>
 </html>
