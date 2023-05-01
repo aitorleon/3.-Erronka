@@ -14,6 +14,10 @@ public abstract class Bezeroa {
 	protected String telefono;
 	protected String mota;
 	
+	/**
+	 * Defektuzko konstruktorea
+	 * @author aitor
+	 */
 	public Bezeroa(){
 		this.nan="";
 		this.izena="";
@@ -24,6 +28,17 @@ public abstract class Bezeroa {
 		this.telefono="";
 		this.mota = "";
 	}
+	/**
+	 * 
+	 * @param n Bezeroaren NAN zenbakia
+	 * @param izn Bezeroaren izena
+	 * @param abz1 Bezeroaren abizena
+	 * @param abz2 Bezeroaren abizena
+	 * @param jdata Bezeroaren jaiotze data
+	 * @param em Bezeroaren emaila
+	 * @param tlf Bezeroaren telefonoa
+	 * @param mo Bezero mota
+	 */
 	public Bezeroa(String n, String izn, String abz1, String abz2, Date jdata, String em, String tlf, String mo) {
 		this.nan=n;
 		this.izena=izn;
