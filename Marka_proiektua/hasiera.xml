@@ -1,0 +1,26 @@
+<cardak>
+	<carda1>
+		<hotelak>
+			<izena>Hotelak</izena>
+			<irudia>argazkiak/hotelak_hasiera.jpg</irudia>
+			<deskribapena>Gure bidaia-agentzian, gure bezeroentzako hotel onenak aukeratzen ahalegintzen gara. Hotel bakoitzak gure bezeroek behar dituzten ekipamenduak dituela ziurtatzen dugu, kokapen onetik hasi eta arreta pertsonalizatua eta aparteko zerbitzura. Horrez gain, prezio kategoria ezberdinetako hotelekin lan egiten dugu, zure aurrekontuari ondoen egokitzen zaion aukera aurki dezazun.</deskribapena>
+			<url>estantziak.html</url>
+		</hotelak>
+	</carda1>
+	<carda1>
+		<motelak>
+			<izena>Motelak</izena>
+			<irudia>argazkiak/motelak_hasiera.jpg</irudia>
+			<deskribapena>Gure bidaia-agentzian, gure bezeroentzako gela garbi eta erosoak eskaintzen dituzten kalitate handiko motelekin ere lan egiten dugu. Motelak aukera merkeagoak izan daitezkeen arren, ez du esan nahi kalitatea edo erosotasuna uko egin behar duzunik. Gure motelak arreta handiz hautatu dira gure gonbidatuek egonaldi atsegina eta lasaia izan dezaten.</deskribapena>
+			<url>estantziak.html</url>
+		</motelak>
+	</carda1>
+	<carda1>
+		<apartamentuak>
+			<izena>Apartamentuak</izena>
+			<irudia>argazkiak/apartamentuak_hasiera.jpg</irudia>
+			<deskribapena>Gure bidaia-agentzian, gure taldeak arretaz hautatutako kalitate handiko apartamentuekin bakarrik lan egiten dugu. Gure apartamentu bakoitzak erosotasun modernoak eta kokapen bikainak eskaintzen ditu, bidaian tokiko kultura ezagutu nahi dutenentzat aukera bikaina bihurtuz.</deskribapena>
+			<url>estantziak.html</url>
+		</apartamentuak>
+	</carda1>
+</cardak>

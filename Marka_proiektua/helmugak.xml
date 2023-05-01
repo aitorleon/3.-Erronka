@@ -1,0 +1,98 @@
+<helmugak>
+	<helmuga id="1">
+		<izena>Bartzelona</izena>
+		<irudia>argazkiak/bartzelona.jpg</irudia>
+		<prezioa>112€</prezioa>
+		<url>bartzelona.html</url>
+		
+			<balorazioak id="b1">
+				<balorazioa>
+					<egilea>Pepito</egilea>
+					<komentarioa>arrigarria</komentarioa>
+					<izarrak>4.5</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Pepito3</egilea>
+					<komentarioa>Komunean papelik ez</komentarioa>
+					<izarrak>3</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Kaiet</egilea>
+					<komentarioa>Komunean papel gehiegi</komentarioa>
+					<izarrak>5</izarrak>
+				</balorazioa>
+			</balorazioak>
+	</helmuga>
+	<helmuga id="2">
+		<izena>Berlin</izena>
+		<irudia>argazkiak/berlin.jpg</irudia>
+		<prezioa>252€</prezioa>
+		<url>berlin.html</url>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Aitor</egilea>
+					<komentarioa>sinestezina</komentarioa>
+					<izarrak>4.5</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Pepito3</egilea>
+					<komentarioa>Komunean papelik ez</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Kaiet</egilea>
+					<komentarioa>Komunean papel gehiegi</komentarioa>
+					<izarrak>5</izarrak>
+				</balorazioa>
+			</balorazioak>
+	</helmuga>
+	<helmuga id="3">
+		<izena>Paris</izena>
+		<irudia>argazkiak/paris.jpg</irudia>
+		<prezioa>214€</prezioa>
+		<url>paris.html</url>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Pepito</egilea>
+					<komentarioa>Super gustura egon naiz</komentarioa>
+					<izarrak>4.5</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Pepito3</egilea>
+					<komentarioa>Komunean papelik ez</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Kaiet</egilea>
+					<komentarioa>Komunean papel gehiegi</komentarioa>
+					<izarrak>5</izarrak>
+				</balorazioa>
+			</balorazioak>
+	</helmuga>
+	<helmuga id="4">
+		<izena>Buenos aires</izena>
+		<irudia>argazkiak/buenos_aires.jpg</irudia>
+		<prezioa>1200€</prezioa>
+		<url>buenos_aires.html</url>
+			<balorazioak>
+				<balorazioa>
+					<egilea>Pepito</egilea>
+					<komentarioa>Super gustura egon naiz</komentarioa>
+					<izarrak>4.5</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Pepito3</egilea>
+					<komentarioa>Komunean papelik ez</komentarioa>
+					<izarrak>2</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Kaiet</egilea>
+					<komentarioa>Komunean papel gehiegi</komentarioa>
+					<izarrak>5</izarrak>
+				</balorazioa>
+			</balorazioak>
+	</helmuga>
+	
+</helmugak>
+
+

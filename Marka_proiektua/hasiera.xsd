@@ -1,0 +1,44 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name = "cardak">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name = "carda1">
+                    <xs:complexType>
+                        <xs:sequence>
+                        <xs:element name = "hotelak">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element type = " xs: string" name = "izena"/>
+                                    <xs:element type = " xs: string" name = "irudia"/>
+                                    <xs:element type = " xs: string" name = "deskribapena"/>
+                                    <xs:element type = " xs: string" name = "url"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                            <xs:element name = "motelak">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type = " xs: string" name = "izena"/>
+                                        <xs:element type = " xs: string" name = "irudia"/>
+                                        <xs:element type = " xs: string" name = "deskribapena"/>
+                                        <xs:element type = " xs: string" name = "url"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                                <xs:element name = "apartamentuak">
+                                    <xs:complexType>
+                                     <xs:sequence>
+                                        <xs:element type = " xs: string" name = "izena"/>
+                                        <xs:element type = " xs: string" name = "irudia"/>
+                                        <xs:element type = " xs: string" name = "deskribapena"/>
+                                        <xs:element type = " xs: string" name = "url"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

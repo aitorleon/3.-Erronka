@@ -19,7 +19,7 @@ multilineString =
             '</li>'+
             '<li class="nav-item">'+
               '<a class="nav-link" href="kontaktua.html">Kontaktua</a>'+
-            '</li>+'
+            '</li>'+
           '</ul>'+
           '</div>'+
        '</div>'+

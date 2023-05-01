@@ -3,15 +3,16 @@
 		<hotela id="1" izarrak="4">
 			<irudia>argazkiak/hotela1.jpg</irudia>
 			<izena>BLEES</izena>
+			<url>estantzia1.html</url>
+			<prezioa>95€</prezioa>
 			<gelak>
 				<gela mota="premium">
 					<kapazitatea>4</kapazitatea>
-					<zerbitzuak>
-						<tv/>
-						<gela_zerbitzua/>
-						<buffet/>
-						<igerilekua/>
-					</zerbitzuak>
+					<wifia>Ez</wifia>
+					<tv>Bai</tv>
+					<gela_zerbitzua>Bai</gela_zerbitzua>
+					<buffet>Bai</buffet>
+					<igerilekua>Ez</igerilekua>
 				</gela>
 			</gelak>
 			<balorazioak>
@@ -34,15 +35,18 @@
 		</hotela>
 
 		<hotela id="2" izarrak="3">
-			<irudia>argazkiak/hotela2.jpg</irudia>
-			<izena>Hotel izen 2</izena>
+			<irudia>argazkiak/hotela2-1.jpg</irudia>
+			<izena>Nobis</izena>
+			<url>estantzia2.html</url>
+			<prezioa>70€</prezioa>
 			<gelak>
 				<gela mota="normala">
 					<kapazitatea>2</kapazitatea>
-					<zerbitzuak>
-						<gela_zerbitzua/>
-						<buffet/>
-					</zerbitzuak>
+					<wifia>Bai</wifia>
+					<tv>EZ</tv>
+					<gela_zerbitzua>Bai</gela_zerbitzua>
+					<buffet>Bai</buffet>
+					<igerilekua>Ez</igerilekua>
 				</gela>
 			</gelak>
 			<balorazioak>
@@ -52,8 +56,8 @@
 					<izarrak>4</izarrak>
 				</balorazioa>
 				<balorazioa>
-					<egilea>Mikel</egilea>
-					<komentarioa>Luken kalera</komentarioa>
+					<egilea>Jon</egilea>
+					<komentarioa>Ez zait askorik gustatu.</komentarioa>
 					<izarrak>2</izarrak>
 				</balorazioa>
 				<balorazioa>
@@ -66,15 +70,17 @@
 
 		<hotela id="3" izarrak="3">
 			<irudia>argazkiak/hotela3.jpg</irudia>
-			<izena>Hotel izena 3</izena>
+			<izena>Only YOU</izena>
+			<url>estantzia3.html</url>
+			<prezioa>64€</prezioa>
 			<gelak>
 				<gela mota="normala">
 					<kapazitatea>2</kapazitatea>
-					<zerbitzuak>
-						<tv/>
-						<gela_zerbitzua/>
-						<buffet/>
-					</zerbitzuak>
+					<wifia>Ez</wifia>
+					<tv>Bai</tv>
+					<gela_zerbitzua>Bai</gela_zerbitzua>
+					<buffet>Bai</buffet>
+					<igerilekua>Ez</igerilekua>
 				</gela>
 			</gelak>
 			<balorazioak>
@@ -97,85 +103,23 @@
 		</hotela>
 
 
-		<hotela id="4" izarrak="3">
-			<irudia>argazkiak/hotela4.jpg</irudia>
-			<izena>Hotel izena 4</izena>
-			<gelak>
-				<gela mota="normala">
-					<kapazitatea>2</kapazitatea>
-					<zerbitzuak>
-						<tv/>
-						<gela_zerbitzua/>
-						<buffet/>
-					</zerbitzuak>
-				</gela>
-			</gelak>
-			<balorazioak>
-				<balorazioa>
-					<egilea>Jose Juan</egilea>
-					<komentarioa>Gooooooooooood</komentarioa>
-					<izarrak>4</izarrak>
-				</balorazioa>
-				<balorazioa>
-					<egilea>MOMO</egilea>
-					<komentarioa>Nashee</komentarioa>
-					<izarrak>4</izarrak>
-				</balorazioa>
-				<balorazioa>
-					<egilea>Aitor</egilea>
-					<komentarioa>Ez naiz gustura egon</komentarioa>
-					<izarrak>2</izarrak>
-				</balorazioa>
-			</balorazioak>
-		</hotela>
-
-
-		<hotela id="5" izarrak="3">
-			<irudia>argazkiak/hotela5.jpg</irudia>
-			<izena>Hotel izena 5</izena>
-			<gelak>
-				<gela mota="normala">
-					<kapazitatea>2</kapazitatea>
-					<zerbitzuak>
-						<tv/>
-						<gela_zerbitzua/>
-						<buffet/>
-					</zerbitzuak>
-				</gela>
-			</gelak>
-			<balorazioak>
-				<balorazioa>
-					<egilea>Jose Juan</egilea>
-					<komentarioa>Gooooooooooood</komentarioa>
-					<izarrak>4</izarrak>
-				</balorazioa>
-				<balorazioa>
-					<egilea>MOMO</egilea>
-					<komentarioa>Nashee</komentarioa>
-					<izarrak>4</izarrak>
-				</balorazioa>
-				<balorazioa>
-					<egilea>Aitor</egilea>
-					<komentarioa>Ez naiz gustura egon</komentarioa>
-					<izarrak>2</izarrak>
-				</balorazioa>
-			</balorazioak>
-		</hotela>
+		
 
 	</hotelak>
 	<motelak>
-		<motela id="6" izarrak="3">
-			<irudia>argazkiak/motela1.jpg</irudia>
-			<izena>Amáre</izena>
+		<motela id="4" izarrak="3">
+			<irudia>argazkiak/motel-1-1.jpg</irudia>
+			<izena>La casa de los mercaderes</izena>
+			<url>estantzia4.html</url>
+			<prezioa>45€</prezioa>
 			<gelak>
 				<gela mota="premium">
 					<kapazitatea>3</kapazitatea>
-					<zerbitzuak>
-						<tv/>
-						<gela_zerbitzua/>
-						<buffet/>
-						<jacuzzi/>
-					</zerbitzuak>
+					<wifia>BAI</wifia>
+					<tv>Bai</tv>
+					<gela_zerbitzua>Bai</gela_zerbitzua>
+					<buffet>Ez</buffet>
+					<igerilekua>Ez</igerilekua>
 				</gela>
 			</gelak>
 			<balorazioak>
@@ -197,17 +141,19 @@
 			</balorazioak>
 			</motela>
 
-			<motela id="7" izarrak="3">
+			<motela id="5" izarrak="3">
 			<irudia>argazkiak/motela2.jpg</irudia>
 			<izena>NH Sevilla Plaza de Armas</izena>
+			<url>estantzia5.html</url>
+			<prezioa>69€</prezioa>
 			<gelak>
 				<gela mota="normala">
 					<kapazitatea>3</kapazitatea>
-					<zerbitzuak>
-						<tv/>
-						<gela_zerbitzua/>
-						<buffet/>
-					</zerbitzuak>
+					<wifia>Ez</wifia>
+					<tv>Bai</tv>
+					<gela_zerbitzua>Bai</gela_zerbitzua>
+					<buffet>Bai</buffet>
+					<igerilekua>Ez</igerilekua>
 				</gela>
 			</gelak>
 			<balorazioak>
@@ -229,18 +175,19 @@
 			</balorazioak>
 			</motela>
 
-			<motela id="8" izarrak="4">
-			<irudia>argazkiak/motela3.jpg</irudia>
+			<motela id="6" izarrak="4">
+			<irudia>argazkiak/motela3-1.jpg</irudia>
 			<izena>Lola Suite Motel</izena>
+			<url>estantzia6.html</url>
+			<prezioa>90€</prezioa>
 			<gelak>
 				<gela mota="premium">
 					<kapazitatea>2</kapazitatea>
-					<zerbitzuak>
-						<tv/>
-						<gela_zerbitzua/>
-						<buffet/>
-						<jacuzzi/>
-					</zerbitzuak>
+					<wifia>Bai</wifia>
+					<tv>Bai</tv>
+					<gela_zerbitzua>Bai</gela_zerbitzua>
+					<buffet>Bai</buffet>
+					<igerilekua>Bai</igerilekua>
 				</gela>
 			</gelak>
 			<balorazioak>
@@ -263,7 +210,108 @@
 			</motela>
 
 		</motelak>
-	<apartamentua>
-	</apartamentua>
+	<apartamentuak>
+		<apartamentua id="7" izarrak="4">
+			<irudia>argazkiak/apartamentua1.jpeg</irudia>
+			<izena>Plaza Nueva Apartamenduak</izena>
+			<url>estantzia7.html</url>
+			<prezioa>45€</prezioa>
+			<gelak>
+				<gela mota="premium">
+					<kapazitatea>2</kapazitatea>
+					<wifia>Bai</wifia>
+					<tv>Ez</tv>
+					<gela_zerbitzua>Ez</gela_zerbitzua>
+					<buffet>Bai</buffet>
+					<igerilekua>Bai</igerilekua>
+				</gela>
+			</gelak>
+			<balorazioak>
+				<balorazioa>
+					<egilea>xxAlex42xx</egilea>
+					<komentarioa>Kokapena, gosaria ezin hobea.</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Ramon Ramirez</egilea>
+					<komentarioa>Oso gustura egon naiz.</komentarioa>
+					<izarrak>4</izarrak>
+				</balorazioa>
+				<balorazioa>
+					<egilea>Paco Gonzalez</egilea>
+					<komentarioa>Oso gustura. </komentarioa>
+					<izarrak>3</izarrak>
+				</balorazioa>
+			</balorazioak>
+			</apartamentua>
+
+			<apartamentua id="8" izarrak="2">
+				<irudia>argazkiak/apartamentua2.jpg</irudia>
+				<izena>Salicornes</izena>
+				<url>estantzia8.html</url>
+				<prezioa>57€</prezioa>
+				<gelak>
+					<gela mota="normala">
+						<kapazitatea>2</kapazitatea>
+						<wifia>Bai</wifia>
+						<tv>Bai</tv>
+						<gela_zerbitzua>Ez</gela_zerbitzua>
+						<buffet>Ez</buffet>
+						<igerilekua>Bai</igerilekua>
+					</gela>
+				</gelak>
+				<balorazioak>
+					<balorazioa>
+						<egilea>Carlos Martin</egilea>
+						<komentarioa>Oso txarra, ez zait gustatu.</komentarioa>
+						<izarrak>2</izarrak>
+					</balorazioa>
+					<balorazioa>
+						<egilea>Julia Alvarez</egilea>
+						<komentarioa>Oso gustura egon naiz.</komentarioa>
+						<izarrak>4</izarrak>
+					</balorazioa>
+					<balorazioa>
+						<egilea>Paco Gonzalez</egilea>
+						<komentarioa>Oso gustura. </komentarioa>
+						<izarrak>3</izarrak>
+					</balorazioa>
+				</balorazioak>
+			</apartamentua>
+
+			<apartamentua id="9" izarrak="3">
+				<irudia>argazkiak/apartamentua3.jpg</irudia>
+				<izena>Sa Punta</izena>
+				<url>estantzia9.html</url>
+				<prezioa>56€</prezioa>
+				<gelak>
+					<gela mota="premium">
+						<kapazitatea>2</kapazitatea>
+						<wifia>Bai</wifia>
+						<tv>Bai</tv>
+						<gela_zerbitzua>Ez</gela_zerbitzua>
+						<buffet>Bai</buffet>
+						<igerilekua>Bai</igerilekua>
+					</gela>
+				</gelak>
+				<balorazioak>
+					<balorazioa>
+						<egilea>xxAlex42xx</egilea>
+						<komentarioa>Kokapena, gosaria ezin hobea.</komentarioa>
+						<izarrak>4</izarrak>
+					</balorazioa>
+					<balorazioa>
+						<egilea>Ramon Ramirez</egilea>
+						<komentarioa>Oso gustura egon naiz.</komentarioa>
+						<izarrak>4</izarrak>
+					</balorazioa>
+					<balorazioa>
+						<egilea>Paco Gonzalez</egilea>
+						<komentarioa>Oso gustura. </komentarioa>
+						<izarrak>3</izarrak>
+					</balorazioa>
+				</balorazioak>
+			</apartamentua>
+	</apartamentuak>
 </estantziak>
 

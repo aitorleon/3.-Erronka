@@ -1,0 +1,70 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name = "helmugak">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name = "helmuga"  maxOccurs="unbounded" minOccurs="0" >
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type = " xs: string" name = "izena"/>
+                            <xs:element type = " xs: string" name = "irudia"/>
+                            <xs:element type = " xs: string" name = "prezioa"/>
+                            <xs:element type = " xs: string" name = "url"/>
+                            <xs:element name = "balorazioak">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name = "balorazioa">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type = " xs: string" name = "egilea"/>
+                                                    <xs:element type = " xs: string" name = "komentarioa"/>
+                                                    <xs:element type = " xs: float" name = "izarrak"/>
+                                                    <xs:element type = " xs: byte" name = "izarrak"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name = "balorazioa">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type = " xs: string" name = "egilea"/>
+                                                    <xs:element type = " xs: string" name = "komentarioa"/>
+                                                    <xs:element type = " xs: byte" name = "izarrak"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name = "balorazioa">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type = " xs: string" name = "egilea"/>
+                                                    <xs:element type = " xs: string" name = "komentarioa"/>
+                                                    <xs:element type = " xs: byte" name = "izarrak"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="id"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name = "balorazioak">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name = "balorazioa">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type = " xs: string" name = "egilea"/>
+                                                    <xs:element type = " xs: string" name = "komentarioa"/>
+                                                    <xs:element type = " xs: float" name = "izarrak"/>
+                                                    <xs:element type = " xs: byte" name = "izarrak"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:byte" name="id" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

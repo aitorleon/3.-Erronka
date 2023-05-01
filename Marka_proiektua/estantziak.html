@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="CSS/styles.css">
+    <link rel="stylesheet" type="text/css" href="CSS/cards_eztantziak.css">
+
+  
     
    
 </head>
@@ -15,49 +18,31 @@
 
 
 <div class="container-fluid ">
-  <button onclick="filtrarPorValoracion(1)">1 estrella</button>
-  <button onclick="filtrarPorValoracion(2)">2 estrellas</button>
-  <button onclick="filtrarPorValoracion(3)">3 estrellas</button>
-  <button onclick="filtrarPorValoracion(4)">4 estrellas</button>
-  <button onclick="filtrarPorValoracion(5)">5 estrellas</button>
-  <button onclick="mostrarTodasLasOpciones()">Mostrar todas las opciones</button>
-
-
-  <h1>HOTELAK</h1>
+  <div class="container-fluid mt-4">
+      <h1 class="text-center border border-primary p-3 bg-light">ESTANTZIAK</h1>
+  </div>
   <div class="row justify-content-around mt-3" id="cardak">
     
   </div>
-     
-
+  <div class="container-fluid mt-4">
+      <h1 class="text-center border border-success p-3 bg-light">MOTELAK</h1>
+  </div>
+  <div class="row justify-content-around mt-3" id="cardak1">
+    
+  </div>
+  <div class="container-fluid mt-4">
+      <h1 class="text-center border border-warning p-3 bg-light">APARTAMENTUAK</h1>
+  </div>
+  <div class="row justify-content-around mt-3" id="cardak2">
+    
+  </div>
 </div>
 
 
+x
 
 
-
- <div class="container-fluid">
-    <div class="row p-5 bg-light text-center">
-   
-        <div class="iconos col-md-6 col-lg-4 ">
-          <h3>Gure Sare Sozialak</h3>
-          <!--<a class="icono-twitter" href="https://twitter.com"><i class="bi bi-twitter"></i></a>-->
-          <a href="https://twitter.com"><img width="30px" height="30x" src="argazkiak/twitter.png"></a> 
-          <!--<a class="icono-mail" href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox"><i class="bi bi-google"></i></a>-->
-          <a href="https://youtube.com"><img width="25px" height="20px" src="argazkiak/mail.png"></a>
-          <!--<a class="icono-instagram" href="https://instagram.com"><i class="bi bi-instagram "></i></a>-->
-          <a href="https://instagram.com"><img width="20px" height="20px" src="argazkiak/instagram.png"></a>
-          <!--<a class="icono-facebook" href="https://facebook.com"><i class="bi bi-facebook"></i></a>-->
-          <a href="https://facebook.com"><img width="20px" height="20px" src="argazkiak/facebook.png"></a>
-        </div>
-         
-        <div class="col-md-6 col-lg-4">
-           <h3>Kontaktua</h3>
-           <a href="tel:+34612234251"><i class="bi bi-telephone"> +34 612 23 42 51</i></a>
-            <p><i class="bi bi-envelope"> ikabidaiak@gmail.com</i></p>
-        </div>
-        <div class="col-md-12 col-lg-4"><img src="argazkiak/logoa-2.png" width="145" height="120"></div>
-    </div>
-  </div>
+ 
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <footer>
@@ -97,12 +82,13 @@ function nire_funtzioa(xml) {
     console.log(hotelak[i].getElementsByTagName("irudia")[0].childNodes[0].nodeValue);
     var hotel_argazkia = hotelak[i].getElementsByTagName("irudia")[0].childNodes[0].nodeValue;
 
-    console.log(hotelak[i].getElementsByTagName("kapazitatea")[0].childNodes[0].nodeValue);
-    var kapazitatea = hotelak[i].getElementsByTagName("kapazitatea")[0].childNodes[0].nodeValue;
+
+    console.log(hotelak[i].getElementsByTagName("url")[0].childNodes[0].nodeValue);
+    var url = hotelak[i].getElementsByTagName("url")[0].childNodes[0].nodeValue;
     
 
 
-    var carda = '<div class="card col-lg-4 col-md-6"><img class="card-img-top" src="'+hotel_argazkia+'" alt="Card image cap"><div class="card-body"><h5 class="card-title">'+hotel_izena+'</h5><p class="card-text">Kapazitatea '+kapazitatea+'</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>';
+    var carda = '<div class="card col-lg-4 col-md-6"><img class="card-img-top" src="'+hotel_argazkia+'" alt="Card image cap"><div class="card-body"><h5 class="card-title">'+hotel_izena+'</h5><p class="card-text"></p><a href="'+url+'" class="btn btn-primary">Ikusi estantzia</a></div></div>';
     card_zona.innerHTML += carda;
 
 
@@ -111,52 +97,103 @@ function nire_funtzioa(xml) {
   }
   
 };
+</script> 
 
-/*function hotel_filtratu(izarrak){
-  var card_zona = document.getElementById("cardak");
-  card_zona.innerHTML = "";
-  if (izarrak == ""){ //DENAK
-    izarrak = "1|2|3|4|5";//???
-  }else{
-    izarrak = values 
-    var pepito=xmlDoc.evaluate('/estantziak/hotelak/hotela[@izarrak='+izarrak+']',xmlDoc, null, XPathResult.ANY_TYPE,null);
-    var result = pepito.iterateNext();
-    while (result) {
-              carda += result.childNodes[0].nodeValue + "<br>";
-              result = pepito.iterateNext(); 
-          } 
-    
-
-    
-    //function applyFilter2() {
-    //var nodes = document.evaluate("//hotela[@izarrak]", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-  }
-}*/
-
-function filtrarPorValoracion(valoracion) {
-  // Selecciona todos los elementos con la clase "paquete"
-  var paquetes = document.getElementsByClassName("paquete");
-
-  // Itera sobre los elementos y oculta los que no tienen la valoración deseada
-  for (var i = 0; i < paquetes.length; i++) {
-    var paquete = paquetes[i];
-    var xpath = ".//valoracion[. < " + valoracion + "]";
-    var resultado = document.evaluate(xpath, paquete, null, XPathResult.BOOLEAN_TYPE, null);
-    if (resultado.booleanValue) {
-      paquete.style.display = "none";
-    } else {
-      paquete.style.display = "block";
+<script type="text/javascript">
+$(document).ready(function(){
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      nire_funtzioa2(this);
     }
-  }
-}
+  };
+  xmlhttp.open("GET", "http://localhost/Marka_proiektua/estantziak.xml", true);
+  xmlhttp.send();
+});
 
-function mostrarTodasLasOpciones() {
-  var paquetes = document.getElementsByClassName("paquete");
-  for (var i = 0; i < paquetes.length; i++) {
-    var paquete = paquetes[i];
-    paquete.style.display = "block";
+var xmlDoc;
+
+function nire_funtzioa2(xml) {
+  //console.log(xml);
+  var x, i, txt;
+  xmlDoc = xml.responseXML;
+  //console.log(xmlDoc);
+
+  var card_zona1 = document.getElementById("cardak1");
+
+  var motelak = xmlDoc.getElementsByTagName("motela");
+  for (var i=0; i < motelak.length; i++)
+  {
+    console.log(motelak[i].getElementsByTagName("izena")[0].childNodes[0].nodeValue);
+    var motel_izena = motelak[i].getElementsByTagName("izena")[0].childNodes[0].nodeValue;
+
+    console.log(motelak[i].getElementsByTagName("irudia")[0].childNodes[0].nodeValue);
+    var motel_argazkia = motelak[i].getElementsByTagName("irudia")[0].childNodes[0].nodeValue;
+
+
+    console.log(motelak[i].getElementsByTagName("url")[0].childNodes[0].nodeValue);
+    var url = motelak[i].getElementsByTagName("url")[0].childNodes[0].nodeValue;
+    
+
+
+    var carda = '<div class="card col-lg-4 col-md-6"><img class="card-img-top" src="'+motel_argazkia+'" alt="Card image cap"><div class="card-body"><h5 class="card-title">'+motel_izena+'</h5><p class="card-text"></p><a href="'+url+'" class="btn btn-success">Ikusi estantzia</a></div></div>';
+    card_zona1.innerHTML += carda;
+
+
+    
+
   }
-}
+  
+};
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      nire_funtzioa3(this);
+    }
+  };
+  xmlhttp.open("GET", "http://localhost/Marka_proiektua/estantziak.xml", true);
+  xmlhttp.send();
+});
+
+var xmlDoc;
+
+function nire_funtzioa3(xml) {
+  //console.log(xml);
+  var x, i, txt;
+  xmlDoc = xml.responseXML;
+  //console.log(xmlDoc);
+
+  var card_zona2 = document.getElementById("cardak2");
+
+  var apartamentuak = xmlDoc.getElementsByTagName("apartamentua");
+  for (var i=0; i < apartamentuak.length; i++)
+  {
+    console.log(apartamentuak[i].getElementsByTagName("izena")[0].childNodes[0].nodeValue);
+    var apartamentua_izena = apartamentuak[i].getElementsByTagName("izena")[0].childNodes[0].nodeValue;
+
+    console.log(apartamentuak[i].getElementsByTagName("irudia")[0].childNodes[0].nodeValue);
+    var apartamentua_argazkia = apartamentuak[i].getElementsByTagName("irudia")[0].childNodes[0].nodeValue;
+
+    console.log(apartamentuak[i].getElementsByTagName("url")[0].childNodes[0].nodeValue);
+    var url = apartamentuak[i].getElementsByTagName("url")[0].childNodes[0].nodeValue;
+    
+
+
+    var carda = '<div class="card col-lg-4 col-md-6"><img class="card-img-top" src="'+apartamentua_argazkia+'" alt="Card image cap"><div class="card-body"><h5 class="card-title">'+apartamentua_izena+'</h5><p class="card-text"></p><a href="'+url+'" class="btn btn-warning">Ikusi estantzia</a></div></div>';
+    card_zona2.innerHTML += carda;
+
+
+    
+
+  }
+  
+};
+
+
 
 
 
