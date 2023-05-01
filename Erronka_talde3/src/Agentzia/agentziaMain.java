@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 public class agentziaMain {
 	private static final Logger LOGGER = Logger.getLogger("LoggerMain"); 
-	private static final Logger LOGGER1 = Logger.getLogger("LoggerOhikoa"); 
+	private static final Logger LOGGER1 = Logger.getLogger("LoggerOhikoa");  
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner teklatua = new Scanner(System.in);
@@ -54,7 +54,7 @@ public class agentziaMain {
 			e2.printStackTrace();
 		}
 		try {
-			fileHandler1 = new FileHandler("./logs/OpcionesUsuarioOhikoa.log", true);
+			fileHandler1 = new FileHandler("./logs/Errores.log", false);
 		}catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -360,7 +360,7 @@ public class agentziaMain {
 						}
 					}while(aukeraVip!=12);
 				}catch (Exception e) {
-					e.printStackTrace();
+					LOGGER1.log(Level.SEVERE, "Errorea dago: " + e);
 				}
 				
 			}else if (encontradoOhikoa) {
@@ -572,7 +572,7 @@ public class agentziaMain {
 						}
 					}while(aukeraOhikoa!=10);
 				}catch (Exception e) {
-					e.printStackTrace();
+					LOGGER1.log(Level.SEVERE, "Errorea dago: " + e);
 				}
 				
 			}

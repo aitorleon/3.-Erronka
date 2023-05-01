@@ -54,3 +54,127 @@
   <message>Opcion: 12</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-01T19:56:53.467188300Z</date>
+  <millis>1682971013467</millis>
+  <nanos>188300</nanos>
+  <sequence>0</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 1</message>
+</record>
+<record>
+  <date>2023-05-01T19:56:55.088488800Z</date>
+  <millis>1682971015088</millis>
+  <nanos>488800</nanos>
+  <sequence>1</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 2</message>
+</record>
+<record>
+  <date>2023-05-01T19:58:01.242825600Z</date>
+  <millis>1682971081242</millis>
+  <nanos>825600</nanos>
+  <sequence>2</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 3</message>
+</record>
+<record>
+  <date>2023-05-01T19:58:04.227469Z</date>
+  <millis>1682971084227</millis>
+  <nanos>469000</nanos>
+  <sequence>3</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 4</message>
+</record>
+<record>
+  <date>2023-05-01T19:58:10.174034200Z</date>
+  <millis>1682971090174</millis>
+  <nanos>34200</nanos>
+  <sequence>4</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 5</message>
+</record>
+<record>
+  <date>2023-05-01T19:58:28.118876400Z</date>
+  <millis>1682971108118</millis>
+  <nanos>876400</nanos>
+  <sequence>5</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 6</message>
+</record>
+<record>
+  <date>2023-05-01T19:58:36.854162100Z</date>
+  <millis>1682971116854</millis>
+  <nanos>162100</nanos>
+  <sequence>6</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 7</message>
+</record>
+<record>
+  <date>2023-05-01T19:58:45.082923300Z</date>
+  <millis>1682971125082</millis>
+  <nanos>923300</nanos>
+  <sequence>7</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 8</message>
+</record>
+<record>
+  <date>2023-05-01T19:58:52.195403600Z</date>
+  <millis>1682971132195</millis>
+  <nanos>403600</nanos>
+  <sequence>8</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 9</message>
+</record>
+<record>
+  <date>2023-05-01T19:58:59.379529600Z</date>
+  <millis>1682971139379</millis>
+  <nanos>529600</nanos>
+  <sequence>9</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 12</message>
+</record>
+</log>
