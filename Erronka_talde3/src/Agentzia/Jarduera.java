@@ -12,6 +12,10 @@ public class Jarduera implements Serializable{
 	private int Balorazioa;
 	private String Eskuragarri;
 	
+	/**
+	 * Defektuzko konstruktorea
+	 * @author Kaiet
+	 */
 	public Jarduera () {
 		this.nan = "";
 		this.id_Jarduera = 0;
@@ -21,6 +25,17 @@ public class Jarduera implements Serializable{
 		this.Balorazioa = 0;
 		this.Eskuragarri = "";
 	}
+	/**
+	 * Konstruktore pertsonalizatua, hau egingo dugu gure Jarduera objetuak gura dugun modura editatzeko
+	 * @author Kaiet
+	 * @param n Jardueraren izena jakitzeko
+	 * @param idJ Jardueraren id zenbakia zehazteko
+	 * @param idH Jardueran egiten den helmugaren id-a
+	 * @param iz Jardueraren izena jakitzeko
+	 * @param mo Jarduera mota zehin izengo den
+	 * @param b Jarduerak dituen balorazio desberdinak
+	 * @param es Eskuragarri dagoen jakitzeko
+	 */
 	public Jarduera (String n,int idJ, int idH, String iz, String mo, int b, String es) {
 		this.nan = n;
 		this.id_Helmuga = idH;
@@ -30,6 +45,10 @@ public class Jarduera implements Serializable{
 		this.Balorazioa = b;
 		this.Eskuragarri = es;
 	}
+	/*
+	 * Kopia konstruktorea
+	 * @author Kaiet
+	 */
 	public Jarduera (Jarduera j) {
 		this.nan = j.nan;
 		this.id_Helmuga = j.id_Helmuga;

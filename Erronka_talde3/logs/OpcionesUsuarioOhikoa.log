@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-01T10:53:47.404796400Z</date>
+  <millis>1682938427404</millis>
+  <nanos>796400</nanos>
+  <sequence>0</sequence>
+  <logger>LoggerOhikoa</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 1</message>
+</record>
+<record>
+  <date>2023-05-01T10:53:49.401773800Z</date>
+  <millis>1682938429401</millis>
+  <nanos>773800</nanos>
+  <sequence>1</sequence>
+  <logger>LoggerOhikoa</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 2</message>
+</record>
+<record>
+  <date>2023-05-01T10:53:50.849771600Z</date>
+  <millis>1682938430849</millis>
+  <nanos>771600</nanos>
+  <sequence>2</sequence>
+  <logger>LoggerOhikoa</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 10</message>
+</record>
+</log>

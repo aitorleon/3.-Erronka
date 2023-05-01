@@ -9,7 +9,7 @@ public abstract class Bezeroa {
 	protected String izena;
 	protected String abizena1;
 	protected String abizena2;
-	protected Date jaiotze_data;
+	protected Date Jaiotze_Data;
 	protected String email;
 	protected String telefono;
 	protected String mota;
@@ -19,7 +19,7 @@ public abstract class Bezeroa {
 		this.izena="";
 		this.abizena1="";
 		this.abizena2="";
-		this.jaiotze_data= new Date(0-0-0);
+		this.Jaiotze_Data= new Date();
 		this.email="";
 		this.telefono="";
 		this.mota = "";
@@ -29,7 +29,7 @@ public abstract class Bezeroa {
 		this.izena=izn;
 		this.abizena1=abz1;
 		this.abizena2=abz2;
-		this.jaiotze_data=jdata;
+		this.Jaiotze_Data=jdata;
 		this.email=em;
 		this.telefono=tlf;
 		this.mota = mo;
@@ -68,10 +68,10 @@ public abstract class Bezeroa {
 		this.abizena2 = abizena2;
 	}
 	public Date getJaiotze_data() {
-		return jaiotze_data;
+		return Jaiotze_Data;
 	}
 	public void setJaiotze_data(Date jaiotze_data) {
-		this.jaiotze_data = jaiotze_data;
+		this.Jaiotze_Data = jaiotze_data;
 	}
 	public String getEmail() {
 		return email;
@@ -93,6 +93,7 @@ public abstract class Bezeroa {
 	public abstract void irakurri(Scanner teklatua);
 	/**
 	 * Gure bezeroen datuak pantailaratzeko
+	 * @author aitor
 	 */
 	public abstract void pantailaratu();
 }

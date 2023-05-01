@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-01T09:29:11.794427700Z</date>
+  <millis>1682933351794</millis>
+  <nanos>427700</nanos>
+  <sequence>0</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 5</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-01T09:31:03.003743900Z</date>
+  <millis>1682933463003</millis>
+  <nanos>743900</nanos>
+  <sequence>0</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 5</message>
+</record>
+<record>
+  <date>2023-05-01T09:31:22.380830200Z</date>
+  <millis>1682933482380</millis>
+  <nanos>830200</nanos>
+  <sequence>1</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 7</message>
+</record>
+<record>
+  <date>2023-05-01T09:31:26.790553Z</date>
+  <millis>1682933486790</millis>
+  <nanos>553000</nanos>
+  <sequence>2</sequence>
+  <logger>LoggerMain</logger>
+  <level>ALL</level>
+  <class>Agentzia.agentziaMain</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Opcion: 12</message>
+</record>
+</log>

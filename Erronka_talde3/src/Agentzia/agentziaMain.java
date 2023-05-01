@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -21,7 +22,8 @@ import java.util.logging.Logger;
 
 
 public class agentziaMain {
-	
+	private static final Logger LOGGER = Logger.getLogger("LoggerMain"); 
+	private static final Logger LOGGER1 = Logger.getLogger("LoggerOhikoa"); 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner teklatua = new Scanner(System.in);
@@ -38,6 +40,28 @@ public class agentziaMain {
 		boolean estantziaerr = false, tiketEros = false, jardueraarr = false, borratuErr = false;
 		Bezeroa b;
 		int i = 0,j = 0, kont=0;
+		
+		LOGGER.setLevel(Level.ALL);
+		LOGGER.setUseParentHandlers(false);
+		LOGGER1.setLevel(Level.ALL);
+		LOGGER1.setUseParentHandlers(false);
+		Handler fileHandler=null;
+		Handler fileHandler1=null;
+		try {
+			fileHandler = new FileHandler("./logs/OpcionesUsuario.log" , true);
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		try {
+			fileHandler1 = new FileHandler("./logs/OpcionesUsuarioOhikoa.log", true);
+		}catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		LOGGER.addHandler(fileHandler);
+		LOGGER1.addHandler(fileHandler1);
+		fileHandler.setLevel(Level.ALL); 
 		//////DB BUELTA ESTANTZIA TAULA/////
 		int id_Estantzia,Kapazitatea, Balorazioa;
 		String NAN, Izena, Mota;
@@ -55,7 +79,6 @@ public class agentziaMain {
 		String Izena1;
 		/////DB BUELTA BEZEROA TAULA/////
 		String Abizena1, Abizena2,Telefonoa,Email;
-		Date Jaiotze_Data;
 		
 		//KONEXIOA DATU BASEAREKIN
 		dbKonexioa(aEstantzia, aHelmuga, aJarduera, aOhikoa, aVIP, aTiketak);
@@ -82,8 +105,9 @@ public class agentziaMain {
 		Bezeroa b1= new VIP();
 		VIP v2 = new VIP();
 		Ohikoa o2 = new Ohikoa();
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				System.out.println("**ONGI ETORRI IKA BIDAI AGENTZIARA**");
+		
+		
+		System.out.println("**ONGI ETORRI IKA BIDAI AGENTZIARA**");
 				System.out.println("**             LOGIN              **");
 				System.out.println("|  Idatzi zure erabiltzaile NANa:  |");
 			idLogin = teklatua.next();			
@@ -102,449 +126,464 @@ public class agentziaMain {
 				}
 			}
 			
-			if ((encontradoVip == false) && (encontradoOhikoa == false)) {
+			if (!encontradoVip && !encontradoOhikoa) {
 				System.out.println("Zure NAN-a ez dago gure datu basean, erregistratu mesedez.");
 				System.out.println("Bezero VIP ala Ohikoa izan nahi duzu?");
 				vipOhikoa = teklatua.next();
-				if (vipOhikoa.equalsIgnoreCase("vip")) {
+				if (vipOhikoa.equalsIgnoreCase("vip") && !encontradoVip) {
 					v2.irakurri(teklatua);
 					aVIP.add(v2);
 					erregistroaVip = true;
-				}else if (vipOhikoa.equalsIgnoreCase("ohikoa")) {
+					encontradoVip = true;
+				}else if (vipOhikoa.equalsIgnoreCase("ohikoa") && !encontradoOhikoa) {
 					o2.irakurri(teklatua);
 					aOhikoa.add(o2);
 					erregistroaOhikoa = true;
+					encontradoOhikoa = true;
 				}
 			}
 			
 			if (encontradoVip) {
-				int aukeraVip = 0, konktVip = 0;
-				do {
-					System.out.println("**ONGI ETORRI, " + aVIP.get(i).getIzena() + ", ZER EGIN NAHI DUZU?**");
-					System.out.println("|| 1. Egindako erreserbak ikusi.               ||");
-					System.out.println("|| 2. Erositako tiketak ikusi.                 ||");
-					System.out.println("|| 3. Antolatutako jarduerak ikusi.            ||");
-					System.out.println("|| 4. Erreserba bat egin.                      ||");
-					System.out.println("|| 5. Tiket bat erosi.                         ||");
-					System.out.println("|| 6. Jarduera bat antolatu                    ||");
-					System.out.println("|| 7. Erreserba bat kantzelatu                 ||");
-					System.out.println("|| 8. Tiket bat kantzelatu                     ||");
-					System.out.println("|| 9. Jarduera bat kantzelatu                  ||");
-					System.out.println("|| 10. Zure puntuak ikusi.                     ||");
-					System.out.println("|| 11. Zure beherapenak ikusi.                 ||");
-					System.out.println("|| 12. Irten                                   ||");
-					aukeraVip = teklatua.nextInt();
-					switch (aukeraVip) {
-					case 1:
-						kont = 0;
-						boolean encontradoErr = false;
-						kont = 0;
-						while (!encontradoErr && kont<aEstantzia.size()-1) {
-							if (aEstantzia.get(kont).getNAN().equals(idLogin)) {
-								encontradoErr = true;
-							}else {
-								kont++;
-							}
-						}
-						if (encontradoErr) {
-							for (Estantzia e : aEstantzia) {
-								if (idLogin.equals(e.getNAN())) {
-									e.estantziaPantailaratu();
-								}
-							}
-						}else {
-							System.out.println("ERROR, ez dituzu erreserebarik.");
-							System.out.println("Estantzia bat erreserbatu nahi baldin baduzu 4. aukeran klik egin.");
-						}
-						break;
-					case 2:
-						erakutsiTiketak(aTiketak, idLogin);
-						break;
-					case 3:
-						erakutsiJarduera(aJarduera, idLogin, i);
-						break;
-					case 4:
-						boolean estantziaAur = false;
-						int idEs;
-						System.out.println("Huek dira ikusgai dauden estantziak.");
-						for (Estantzia t : aEstantzia) {
-							if (t.getNAN()==null) {
-								t.estantziaPantailaratu();
-								estantziaAur = true;
-							}
-						}
-						if (estantziaAur == false) {
-							System.out.println("-----------------------------------------------------------");
-							System.out.println("Sentitzen dugu baina estantzia guztiak erreserbatuta daude.");
-							System.out.println("-----------------------------------------------------------");
-						}else {
-							System.out.println("Idatzi zein estantzia erreserbatu nahi duzun estantziaren IDa.");
-							idEs = teklatua.nextInt();
-							for (Estantzia r : aEstantzia) {
-								if (r.getId_Estantzia()==idEs) {
-									r.setNAN(idLogin);
-									System.out.println("Estantzia erreserbatu da.");
-									estantziaerr = true;
-								}
-							}
-						}
-						break;
-					case 5:
-						tiketEros = tiketErosketa(teklatua, aTiketak);
-						break;
-					case 6:
-						jardueraarr = false;
-						int idHelmu;
-						kont = 0;
-						System.out.println("Hauek dira eskuragarri dauden jarduerak");
-						for (int w = 0; w < aJarduera.size(); w++) {
-							if (aJarduera.get(w).getEskuragarri().equalsIgnoreCase("bai")) {
-								aJarduera.get(w).pantailaratuJarduera();
-							}
-						}
-						System.out.println("Idatzi erreserbatu nahi duzun jardueraren ID-a");
-						idHelmu = teklatua.nextInt();
-						
-						while (!jardueraarr && kont < aJarduera.size()) {
-							if (aJarduera.get(kont).getId_Jarduera()==idHelmu) {
-								aJarduera.get(kont).setEskuragarri("ez");
-								System.out.println("Zure jarduera erreserbatu da");
-								jardueraarr = true;
-							}else {
-								kont++;
-							}
-						}
-						break;
-					case 7:
-						boolean encontradoBorr = false;
-						int idEs1;
-						kont = 0;
-						System.out.println("Hauek dira zure erreserbak");
-						for (Estantzia t : aEstantzia) {
-							if (t.getNAN()!=null &&t.getNAN().equalsIgnoreCase(idLogin)) {
-								t.estantziaPantailaratu();
-								borratuErr = true;
-							}
-						}
-						if (!borratuErr) {
-							System.out.println("Ez dituzu erreserbarik, horretarako 4. aukeran klik egin");
-						}else {
-							System.out.println("Idatzi borratu nahi duzun estantziaren ID-a");
-							idEs1 = teklatua.nextInt();
-							while (!encontradoBorr && kont < aEstantzia.size()) {
-								if (aEstantzia.get(kont).getId_Estantzia()==idEs1) {
-									aEstantzia.get(kont).setNAN(" ");
-									encontradoBorr = true;
-									System.out.println("Zure estantzia borratu da.");
+				try  {
+					int aukeraVip = 0, konktVip = 0;
+					do {
+						System.out.println("**ONGI ETORRI, " + aVIP.get(i).getIzena() + ", ZER EGIN NAHI DUZU?**");
+						System.out.println("|| 1. Egindako erreserbak ikusi.               ||");
+						System.out.println("|| 2. Erositako tiketak ikusi.                 ||");
+						System.out.println("|| 3. Antolatutako jarduerak ikusi.            ||");
+						System.out.println("|| 4. Erreserba bat egin.                      ||");
+						System.out.println("|| 5. Tiket bat erosi.                         ||");
+						System.out.println("|| 6. Jarduera bat antolatu                    ||");
+						System.out.println("|| 7. Erreserba bat kantzelatu                 ||");
+						System.out.println("|| 8. Tiket bat kantzelatu                     ||");
+						System.out.println("|| 9. Jarduera bat kantzelatu                  ||");
+						System.out.println("|| 10. Zure puntuak ikusi.                     ||");
+						System.out.println("|| 11. Zure beherapenak ikusi.                 ||");
+						System.out.println("|| 12. Irten                                   ||");
+						aukeraVip = teklatua.nextInt();
+						LOGGER.log(Level.CONFIG.ALL, "Opcion: " + aukeraVip);
+						switch (aukeraVip) {
+						case 1:
+							kont = 0;
+							boolean encontradoErr = false;
+							kont = 0;
+							while (!encontradoErr && kont<aEstantzia.size()-1) {
+								if (aEstantzia.get(kont).getNAN().equals(idLogin)) {
+									encontradoErr = true;
 								}else {
 									kont++;
 								}
 							}
-						}
-						break;
-					case 8:
-						boolean tiketAurr = false, encontradoTik = false;
-						kont = 0;
-						int idTik;
-						System.out.println("Hauek dira zure tiketak.");
-						for (Tiketak t2 : aTiketak) {
-							if (t2.getNan().equals(idLogin)) {
-								t2.pantailaratu();
-								tiketAurr = true;
-							}
-						}
-						if (!tiketAurr) {
-							System.out.println("Ez dituzu tiketik erosi, horretarako 5. aukeran klik egin");
-						}else {
-							System.out.println("Idatzi borratu nahi duzun tiketaren IDa");
-							idTik = teklatua.nextInt();
-							while (!encontradoTik && kont < aTiketak.size()) {
-								if (aTiketak.get(kont).getId_tiket()==idTik) {
-									aTiketak.remove(kont);
-									encontradoTik = true;
-									System.out.println("Zure tiketa borratu da.");
-								}else {
-									kont++;
+							if (encontradoErr) {
+								for (Estantzia e : aEstantzia) {
+									if (idLogin.equals(e.getNAN())) {
+										e.estantziaPantailaratu();
+									}
 								}
-							}
-						}
-						break;
-					case 9:
-						boolean encontradoJarr = false, borratuJar = false;
-						int idHelm, idJar;
-						kont =0;
-						System.out.println("Idatzi zure helmugaren ID-a");
-						idHelm = teklatua.nextInt();
-						for (Jarduera t : aJarduera) {
-							if (t.getId_Helmuga()==idHelm) {
-								t.pantailaratuJarduera();
-								encontradoJarr = true;
-							}
-						}
-						if (!encontradoJarr) {
-							System.out.println("Ez da aurkitu zure jarduera");
-						}else {
-							System.out.println("Idatzi zein jarduera ezabatu nahi duzu");
-							idJar = teklatua.nextInt();
-							while (!borratuJar && kont < aJarduera.size()) {
-								if (aJarduera.get(kont).getId_Jarduera()==idJar) {
-									aJarduera.get(kont).setEskuragarri("bai");
-									borratuJar = true;
-									System.out.println("Zure jarduera kantzelatu da.");
-								}else {
-									kont++;
-								}
-							}
-						}
-						break;
-					case 10:
-						System.out.println("Zure puntuak: " + aVIP.get(i).getPuntuak());
-						break;
-					case 11:
-						boolean encontradoTiket = false;
-						int deskontua = 0, puntuak1;
-						kont = 0;
-						int id;
-						puntuak1 = aVIP.get(i).getPuntuak();
-						Tiketak t54 = new Tiketak();
-						System.out.println("Kontuan izanda " + aVIP.get(i).getPuntuak() + " puntu dituzula...");
-						deskontua = t54.deskontuaFun(puntuak1);
-						System.out.println("-----------------------------------------------------------------");
-						System.out.println("Idatzi deskontua aplikatu nahi duzun tiketeko IDa");
-						id = teklatua.nextInt();
-						while (!encontradoTiket && kont<aTiketak.size()) {
-							if (aTiketak.get(kont).getId_tiket() == (id)) {
-								encontradoTiket = true;
 							}else {
-								kont++;
+								System.out.println("ERROR, ez dituzu erreserebarik.");
+								System.out.println("Estantzia bat erreserbatu nahi baldin baduzu 4. aukeran klik egin.");
 							}
+							break;
+						case 2:
+							erakutsiTiketak(aTiketak, idLogin);
+							break;
+						case 3:
+							erakutsiJarduera(aJarduera, idLogin, i);
+							break;
+						case 4:
+							boolean estantziaAur = false;
+							int idEs;
+							System.out.println("Huek dira ikusgai dauden estantziak.");
+							for (Estantzia t : aEstantzia) {
+								if (t.getNAN()==null) {
+									t.estantziaPantailaratu();
+									estantziaAur = true;
+								}
+							}
+							if (estantziaAur == false) {
+								System.out.println("-----------------------------------------------------------");
+								System.out.println("Sentitzen dugu baina estantzia guztiak erreserbatuta daude.");
+								System.out.println("-----------------------------------------------------------");
+							}else {
+								System.out.println("Idatzi zein estantzia erreserbatu nahi duzun estantziaren IDa.");
+								idEs = teklatua.nextInt();
+								for (Estantzia r : aEstantzia) {
+									if (r.getId_Estantzia()==idEs) {
+										r.setNAN(idLogin);
+										System.out.println("Estantzia erreserbatu da.");
+										estantziaerr = true;
+									}
+								}
+							}
+							break;
+						case 5:
+							tiketEros = tiketErosketa(teklatua, aTiketak);
+							break;
+						case 6:
+							jardueraarr = false;
+							int idHelmu;
+							kont = 0;
+							System.out.println("Hauek dira eskuragarri dauden jarduerak");
+							for (int w = 0; w < aJarduera.size(); w++) {
+								if (aJarduera.get(w).getEskuragarri().equalsIgnoreCase("bai")) {
+									aJarduera.get(w).pantailaratuJarduera();
+								}
+							}
+							System.out.println("Idatzi erreserbatu nahi duzun jardueraren ID-a");
+							idHelmu = teklatua.nextInt();
+							
+							while (!jardueraarr && kont < aJarduera.size()) {
+								if (aJarduera.get(kont).getId_Jarduera()==idHelmu) {
+									aJarduera.get(kont).setEskuragarri("ez");
+									System.out.println("Zure jarduera erreserbatu da");
+									jardueraarr = true;
+								}else {
+									kont++;
+								}
+							}
+							break;
+						case 7:
+							boolean encontradoBorr = false;
+							int idEs1;
+							kont = 0;
+							System.out.println("Hauek dira zure erreserbak");
+							for (Estantzia t : aEstantzia) {
+								if (t.getNAN()!=null &&t.getNAN().equalsIgnoreCase(idLogin)) {
+									t.estantziaPantailaratu();
+									borratuErr = true;
+								}
+							}
+							if (!borratuErr) {
+								System.out.println("Ez dituzu erreserbarik, horretarako 4. aukeran klik egin");
+							}else {
+								System.out.println("Idatzi borratu nahi duzun estantziaren ID-a");
+								idEs1 = teklatua.nextInt();
+								while (!encontradoBorr && kont < aEstantzia.size()) {
+									if (aEstantzia.get(kont).getId_Estantzia()==idEs1) {
+										aEstantzia.get(kont).setNAN("00000000");
+										encontradoBorr = true;
+										System.out.println("Zure estantzia borratu da.");
+									}else {
+										kont++;
+									}
+								}
+							}
+							break;
+						case 8:
+							boolean tiketAurr = false, encontradoTik = false;
+							kont = 0;
+							int idTik;
+							System.out.println("Hauek dira zure tiketak.");
+							for (Tiketak t2 : aTiketak) {
+								if (t2.getNan().equals(idLogin)) {
+									t2.pantailaratu();
+									tiketAurr = true;
+								}
+							}
+							if (!tiketAurr) {
+								System.out.println("Ez dituzu tiketik erosi, horretarako 5. aukeran klik egin");
+							}else {
+								System.out.println("Idatzi borratu nahi duzun tiketaren IDa");
+								idTik = teklatua.nextInt();
+								while (!encontradoTik && kont < aTiketak.size()) {
+									if (aTiketak.get(kont).getId_tiket()==idTik) {
+										aTiketak.remove(kont);
+										encontradoTik = true;
+										System.out.println("Zure tiketa borratu da.");
+									}else {
+										kont++;
+									}
+								}
+							}
+							break;
+						case 9:
+							boolean encontradoJarr = false, borratuJar = false;
+							int idHelm, idJar;
+							kont =0;
+							System.out.println("Idatzi zure helmugaren ID-a");
+							idHelm = teklatua.nextInt();
+							for (Jarduera t : aJarduera) {
+								if (t.getId_Helmuga()==idHelm) {
+									t.pantailaratuJarduera();
+									encontradoJarr = true;
+								}
+							}
+							if (!encontradoJarr) {
+								System.out.println("Ez da aurkitu zure jarduera");
+							}else {
+								System.out.println("Idatzi zein jarduera ezabatu nahi duzu");
+								idJar = teklatua.nextInt();
+								while (!borratuJar && kont < aJarduera.size()) {
+									if (aJarduera.get(kont).getId_Jarduera()==idJar) {
+										aJarduera.get(kont).setEskuragarri("bai");
+										borratuJar = true;
+										System.out.println("Zure jarduera kantzelatu da.");
+									}else {
+										kont++;
+									}
+								}
+							}
+							break;
+						case 10:
+							System.out.println("Zure puntuak: " + aVIP.get(i).getPuntuak());
+							break;
+						case 11:
+							boolean encontradoTiket = false;
+							int deskontua = 0, puntuak1;
+							kont = 0;
+							int id;
+							puntuak1 = aVIP.get(i).getPuntuak();
+							Tiketak t54 = new Tiketak();
+							System.out.println("Kontuan izanda " + aVIP.get(i).getPuntuak() + " puntu dituzula...");
+							deskontua = t54.deskontuaFun(puntuak1);
+							System.out.println("-----------------------------------------------------------------");
+							System.out.println("Idatzi deskontua aplikatu nahi duzun tiketeko IDa");
+							id = teklatua.nextInt();
+							while (!encontradoTiket && kont<aTiketak.size()) {
+								if (aTiketak.get(kont).getId_tiket() == (id)) {
+									encontradoTiket = true;
+								}else {
+									kont++;
+								}
+							}
+							if (encontradoTiket) {
+								Tiketak tiket = aTiketak.get(kont);
+								System.out.println("Prezio finala: " + t54.kalkulatuDesk(tiket, deskontua));
+							}else {
+								System.out.println("Ez dira tiketarik aurkitu. Saiatu berriro edo bat erosi");
+							}
+							break;
+						case 12:
+							System.out.println("Plazer bat izan da " + aVIP.get(konktVip).getIzena() + ", gero arte.");
+							break;
 						}
-						if (encontradoTiket) {
-							Tiketak tiket = aTiketak.get(kont);
-							System.out.println("Prezio finala: " + t54.kalkulatuDesk(tiket, deskontua));
-						}else {
-							System.out.println("Ez dira tiketarik aurkitu. Saiatu berriro edo bat erosi");
-						}
-						break;
-					case 12:
-						System.out.println("Plazer bat izan da " + aVIP.get(konktVip).getIzena() + ", gero arte.");
-						break;
-					}
-				}while(aukeraVip!=12);
+					}while(aukeraVip!=12);
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 			}else if (encontradoOhikoa) {
-				int aukeraOhikoa = 0;
-				do {
-					System.out.println("** ONGI ETORRI, " + aOhikoa.get(j).getIzena() + ", ZER EGIN NAHI DUZU?**");
-					System.out.println("|| 1. Egindako erreserbak ikusi.   			  ||");
-					System.out.println("|| 2. Erositako tiketak ikusi.     			  ||");
-					System.out.println("|| 3. Antolatutako jarduerak ikusi.			  ||");
-					System.out.println("|| 4. Erreserba bat egin.          			  ||");
-					System.out.println("|| 5. Tiket bat erosi.             			  ||");
-					System.out.println("|| 6. Jarduera bat antolatu.                			  ||");
-					System.out.println("|| 7. Erreserba bat kantzelatu.                           ||");
-					System.out.println("|| 8. Tiket bat kantzelatu.                               ||");
-					System.out.println("|| 9. Jarduera bat desegin.                               ||");
-					System.out.println("|| 10. Irten.                                             ||");
-					aukeraOhikoa = teklatua.nextInt();
-					switch (aukeraOhikoa) {
-					case 1:
-						kont = 0;
-						boolean encontradoErr = false;
-						kont = 0;
-						while (!encontradoErr && kont<aEstantzia.size()-1) {
-							if (aEstantzia.get(kont).getNAN().equals(idLogin)) {
-								encontradoErr = true;
-							}else {
-								kont++;
-							}
-						}
-						if (encontradoErr) {
-							for (Estantzia e : aEstantzia) {
-								if (idLogin.equals(e.getNAN())) {
-									e.estantziaPantailaratu();
-								}
-							}
-						}else {
-							System.out.println("ERROR, ez dituzu erreserebarik.");
-							System.out.println("Estantzia bat erreserbatu nahi baldin baduzu 4. aukeran klik egin.");
-						}
-						break;
-					case 2:
-						erakutsiTiketak(aTiketak, idLogin);
-						break;
-					case 3:
-						boolean encontradoJar = false;
-						kont  =0;
-						while (!encontradoJar && kont<aJarduera.size()) {
-							if (aJarduera.get(kont).getNan().equals(idLogin)) {
-								encontradoJar = true;
-							}else {
-								kont++;
-							}
-						}
-						if (encontradoJar) {
-							for (Jarduera j1 : aJarduera) {
-								if (j1.getNan().equals(idLogin)) {
-									j1.pantailaratuJarduera();
-								}
-							}
-						}else {
-							System.out.println("ERROR, ez duzu jarduerarik antolatu.");
-							System.out.println("Tiketa erosi nahi baduzu, 5. aukeran klik egin.");
-						}
-						System.out.println("_____________________________________________________________");
-						break;
-					case 4:
-						boolean estantziaAur = false;
-						boolean estantziaErres = false;
-						int idEs;
-						System.out.println("Huek dira ikusgai dauden estantziak.");
-						for (Estantzia t : aEstantzia) {
-							if (t.getNAN()==null) {
-								t.estantziaPantailaratu();
-								estantziaAur = true;
-							}
-						}
-						if (!estantziaAur) {
-							System.out.println("-----------------------------------------------------------");
-							System.out.println("Sentitzen dugu baina estantzia guztiak erreserbatuta daude.");
-							System.out.println("-----------------------------------------------------------");
-						}else {
-							System.out.println("Idatzi zein estantzia erreserbatu nahi duzun.");
-							idEs = teklatua.nextInt();
-							for (Estantzia r : aEstantzia) {
-								if (r.getId_Estantzia()==idEs) {
-									r.setNAN(idLogin);
-									System.out.println("Estantzia erreserbatu da.");
-									estantziaErres = true;
-								}
-							}
-						}
-						break;
-					case 5:
-						tiketEros = tiketErosketa(teklatua, aTiketak);
-						System.out.println("Zure tiketaren erosketa egin da.");
-						break;
-					case 6:
-						jardueraarr = false;
-						int idHelmu;
-						kont = 0;
-						System.out.println("Hauek dira eskuragarri dauden jarduerak");
-						for (int w = 0; w < aJarduera.size(); w++) {
-							if (aJarduera.get(w).getEskuragarri().equalsIgnoreCase("bai")) {
-								aJarduera.get(w).pantailaratuJarduera();
-							}
-						}
-						System.out.println("Idatzi erreserbatu nahi duzun jardueraren ID-a");
-						idHelmu = teklatua.nextInt();
-						
-						while (!jardueraarr && kont < aJarduera.size()) {
-							if (aJarduera.get(kont).getId_Jarduera()==idHelmu) {
-								aJarduera.get(kont).setEskuragarri("ez");
-								System.out.println("Zure jarduera erreserbatu da");
-								jardueraarr = true;
-							}else {
-								kont++;
-							}
-						}
-						break;
-					case 7:
-						borratuErr = false;
-						boolean encontradoBorr = false;
-						int idEs1;
-						kont = 0;
-						System.out.println("Hauek dira zure erreserbak");
-						for (Estantzia t : aEstantzia) {
-							if (t.getNAN()!=null &&t.getNAN().equalsIgnoreCase(idLogin)) {
-								t.estantziaPantailaratu();
-								borratuErr = true;
-							}
-						}
-						if (!borratuErr) {
-							System.out.println("Ez dituzu erreserbarik, horretarako 4. aukeran klik egin");
-						}else {
-							System.out.println("Idatzi borratu nahi duzun estantziaren ID-a");
-							idEs1 = teklatua.nextInt();
-							while (!encontradoBorr && kont < aEstantzia.size()) {
-								if (aEstantzia.get(kont).getId_Estantzia()==idEs1) {
-									aEstantzia.get(kont).setNAN(" ");
-									encontradoBorr = true;
-									System.out.println("Zure estantzia borratu da.");
+				try {
+					int aukeraOhikoa = 0;
+					do {
+						System.out.println("** ONGI ETORRI, " + aOhikoa.get(j).getIzena() + ", ZER EGIN NAHI DUZU?**");
+						System.out.println("|| 1. Egindako erreserbak ikusi.   			  ||");
+						System.out.println("|| 2. Erositako tiketak ikusi.     			  ||");
+						System.out.println("|| 3. Antolatutako jarduerak ikusi.			  ||");
+						System.out.println("|| 4. Erreserba bat egin.          			  ||");
+						System.out.println("|| 5. Tiket bat erosi.             			  ||");
+						System.out.println("|| 6. Jarduera bat antolatu.            			  ||");
+						System.out.println("|| 7. Erreserba bat kantzelatu.                           ||");
+						System.out.println("|| 8. Tiket bat kantzelatu.                               ||");
+						System.out.println("|| 9. Jarduera bat desegin.                               ||");
+						System.out.println("|| 10. Irten.                                             ||");
+						aukeraOhikoa = teklatua.nextInt();
+						LOGGER1.log(Level.CONFIG.ALL, "Opcion: " + aukeraOhikoa);
+						switch (aukeraOhikoa) {
+						case 1:
+							kont = 0;
+							boolean encontradoErr = false;
+							kont = 0;
+							while (!encontradoErr && kont<aEstantzia.size()-1) {
+								if (aEstantzia.get(kont).getNAN().equals(idLogin)) {
+									encontradoErr = true;
 								}else {
 									kont++;
 								}
 							}
-						}
-						break;
-					case 8:
-						boolean tiketAurr = false, encontradoTik = false;
-						kont = 0;
-						int idTik;
-						System.out.println("Hauek dira zure tiketak.");
-						for (Tiketak t2 : aTiketak) {
-							if (t2.getNan().equals(idLogin)) {
-								t2.pantailaratu();
-								tiketAurr = true;
+							if (encontradoErr) {
+								for (Estantzia e : aEstantzia) {
+									if (idLogin.equals(e.getNAN())) {
+										e.estantziaPantailaratu();
+									}
+								}
+							}else {
+								System.out.println("ERROR, ez dituzu erreserebarik.");
+								System.out.println("Estantzia bat erreserbatu nahi baldin baduzu 4. aukeran klik egin.");
 							}
-						}
-						if (!tiketAurr) {
-							System.out.println("Ez dituzu tiketik erosi, horretarako 5. aukeran klik egin");
-						
-						}else {
-							System.out.println("Idatzi borratu nahi duzun tiketaren IDa");
-							idTik = teklatua.nextInt();
-							while (!encontradoTik && kont < aTiketak.size()) {
-								if (aTiketak.get(kont).getId_tiket()==idTik) {
-									aTiketak.remove(kont);
-									encontradoTik = true;
-									System.out.println("Zure tiketa borratu da.");
+							break;
+						case 2:
+							erakutsiTiketak(aTiketak, idLogin);
+							break;
+						case 3:
+							boolean encontradoJar = false;
+							kont  =0;
+							while (!encontradoJar && kont<aJarduera.size()) {
+								if (aJarduera.get(kont).getNan().equals(idLogin)) {
+									encontradoJar = true;
 								}else {
 									kont++;
 								}
 							}
-						}
-						break;
-					case 9:
-						boolean encontradoJarr = false, borratuJar = false;
-						int idHelm, idJar;
-						kont =0;
-						System.out.println("Idatzi zure helmugaren ID-a");
-						idHelm = teklatua.nextInt();
-						for (Jarduera t : aJarduera) {
-							if (t.getId_Helmuga()==idHelm) {
-								t.pantailaratuJarduera();
-								encontradoJarr = true;
+							if (encontradoJar) {
+								for (Jarduera j1 : aJarduera) {
+									if (j1.getNan().equals(idLogin)) {
+										j1.pantailaratuJarduera();
+									}
+								}
+							}else {
+								System.out.println("ERROR, ez duzu jarduerarik antolatu.");
+								System.out.println("Tiketa erosi nahi baduzu, 5. aukeran klik egin.");
 							}
-						}
-						if (!encontradoJarr) {
-							System.out.println("Ez da aurkitu zure jarduera");
-						}else {
-							System.out.println("Idatzi zein jarduera ezabatu nahi duzu");
-							idJar = teklatua.nextInt();
-							while (!borratuJar && kont < aJarduera.size()) {
-								if (aJarduera.get(kont).getId_Jarduera()==idJar) {
-									aJarduera.get(kont).setEskuragarri("bai");
-									borratuJar = true;
-									System.out.println("Zure jarduera kantzelatu da.");
+							System.out.println("_____________________________________________________________");
+							break;
+						case 4:
+							boolean estantziaAur = false;
+							boolean estantziaErres = false;
+							int idEs;
+							System.out.println("Huek dira ikusgai dauden estantziak.");
+							for (Estantzia t : aEstantzia) {
+								if (t.getNAN()==null) {
+									t.estantziaPantailaratu();
+									estantziaAur = true;
+								}
+							}
+							if (!estantziaAur) {
+								System.out.println("-----------------------------------------------------------");
+								System.out.println("Sentitzen dugu baina estantzia guztiak erreserbatuta daude.");
+								System.out.println("-----------------------------------------------------------");
+							}else {
+								System.out.println("Idatzi zein estantzia erreserbatu nahi duzun.");
+								idEs = teklatua.nextInt();
+								for (Estantzia r : aEstantzia) {
+									if (r.getId_Estantzia()==idEs) {
+										r.setNAN(idLogin);
+										System.out.println("Estantzia erreserbatu da.");
+										estantziaErres = true;
+									}
+								}
+							}
+							break;
+						case 5:
+							tiketEros = tiketErosketa(teklatua, aTiketak);
+							System.out.println("Zure tiketaren erosketa egin da.");
+							break;
+						case 6:
+							jardueraarr = false;
+							int idHelmu;
+							kont = 0;
+							System.out.println("Hauek dira eskuragarri dauden jarduerak");
+							for (int w = 0; w < aJarduera.size(); w++) {
+								if (aJarduera.get(w).getEskuragarri().equalsIgnoreCase("bai")) {
+									aJarduera.get(w).pantailaratuJarduera();
+								}
+							}
+							System.out.println("Idatzi erreserbatu nahi duzun jardueraren ID-a");
+							idHelmu = teklatua.nextInt();
+							
+							while (!jardueraarr && kont < aJarduera.size()) {
+								if (aJarduera.get(kont).getId_Jarduera()==idHelmu) {
+									aJarduera.get(kont).setEskuragarri("ez");
+									System.out.println("Zure jarduera erreserbatu da");
+									jardueraarr = true;
 								}else {
 									kont++;
 								}
 							}
+							break;
+						case 7:
+							borratuErr = false;
+							boolean encontradoBorr = false;
+							int idEs1;
+							kont = 0;
+							System.out.println("Hauek dira zure erreserbak");
+							for (Estantzia t : aEstantzia) {
+								if (t.getNAN()!=null &&t.getNAN().equalsIgnoreCase(idLogin)) {
+									t.estantziaPantailaratu();
+									borratuErr = true;
+								}
+							}
+							if (!borratuErr) {
+								System.out.println("Ez dituzu erreserbarik, horretarako 4. aukeran klik egin");
+							}else {
+								System.out.println("Idatzi borratu nahi duzun estantziaren ID-a");
+								idEs1 = teklatua.nextInt();
+								while (!encontradoBorr && kont < aEstantzia.size()) {
+									if (aEstantzia.get(kont).getId_Estantzia()==idEs1) {
+										aEstantzia.get(kont).setNAN("00000000");
+										encontradoBorr = true;
+										System.out.println("Zure estantzia borratu da.");
+									}else {
+										kont++;
+									}
+								}
+							}
+							break;
+						case 8:
+							boolean tiketAurr = false, encontradoTik = false;
+							kont = 0;
+							int idTik;
+							System.out.println("Hauek dira zure tiketak.");
+							for (Tiketak t2 : aTiketak) {
+								if (t2.getNan().equals(idLogin)) {
+									t2.pantailaratu();
+									tiketAurr = true;
+								}
+							}
+							if (!tiketAurr) {
+								System.out.println("Ez dituzu tiketik erosi, horretarako 5. aukeran klik egin");
+							
+							}else {
+								System.out.println("Idatzi borratu nahi duzun tiketaren IDa");
+								idTik = teklatua.nextInt();
+								while (!encontradoTik && kont < aTiketak.size()) {
+									if (aTiketak.get(kont).getId_tiket()==idTik) {
+										aTiketak.remove(kont);
+										encontradoTik = true;
+										System.out.println("Zure tiketa borratu da.");
+									}else {
+										kont++;
+									}
+								}
+							}
+							break;
+						case 9:
+							boolean encontradoJarr = false, borratuJar = false;
+							int idHelm, idJar;
+							kont =0;
+							System.out.println("Idatzi zure helmugaren ID-a");
+							idHelm = teklatua.nextInt();
+							for (Jarduera t : aJarduera) {
+								if (t.getId_Helmuga()==idHelm) {
+									t.pantailaratuJarduera();
+									encontradoJarr = true;
+								}
+							}
+							if (!encontradoJarr) {
+								System.out.println("Ez da aurkitu zure jarduera");
+							}else {
+								System.out.println("Idatzi zein jarduera ezabatu nahi duzu");
+								idJar = teklatua.nextInt();
+								while (!borratuJar && kont < aJarduera.size()) {
+									if (aJarduera.get(kont).getId_Jarduera()==idJar) {
+										aJarduera.get(kont).setEskuragarri("bai");
+										borratuJar = true;
+										System.out.println("Zure jarduera kantzelatu da.");
+									}else {
+										kont++;
+									}
+								}
+							}
+							break;
+						case 10:
+							System.out.println("Plazer bat izan da " + aOhikoa.get(j).getIzena() + ", agur.");
+							break;
 						}
-						break;
-					case 10:
-						System.out.println("Plazer bat izan da " + aOhikoa.get(j).getIzena() + ", agur.");
-						break;
-					}
-				}while(aukeraOhikoa!=10);
+					}while(aukeraOhikoa!=10);
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 			}
-			
 			////////DB BUELTA//////////////////
 			if (estantziaerr || borratuErr) {
 				try {
 					String consultaReserba="";
 					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
 					Statement st = conexion.createStatement();
+					consultaReserba="DELETE FROM HELMUGA";
+					st.execute(consultaReserba);
 					consultaReserba = "DELETE FROM estantzia";
 					st.execute(consultaReserba);
 					for (int i1=0;i1<aEstantzia.size();i1++) {
@@ -558,6 +597,14 @@ public class agentziaMain {
 						consultaReserba = "INSERT INTO estantzia VALUES ('"+id_Estantzia+"','"+NAN+"','"+Izena+"','"+Kapazitatea+"','"+Mota+"','"+Balorazioa+"');";
 						st.execute(consultaReserba);
 						}
+					for (int i2=0;i2<aHelmuga.size();i2++) {
+						Helmuga h1 = aHelmuga.get(i2);
+						id_Helmuga = h1.getId_Helmuga();
+						id_Estantzia = h1.getId_Estantzia();
+						Izena = h1.getIzena();
+						consultaReserba = "INSERT INTO helmuga VALUES('"+id_Helmuga+"','"+id_Estantzia+"','"+Izena+"');";
+						st.execute(consultaReserba);
+					}
 				}
 				catch (SQLException e){
 				// si NO se ha conectado correctamente
@@ -607,7 +654,7 @@ public class agentziaMain {
 					System.out.println("Sarrera/Irteera errorea");
 				}
 			}
-			try {
+			/*try {
 				String consultaVip="";
 				Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
 				Statement st = conexion.createStatement();
@@ -637,30 +684,122 @@ public class agentziaMain {
 			catch (SQLException e ) {
 				e.printStackTrace();
 				System.out.println("ERROR VIP/OHIKOA");
-			}
-			if (erregistroaVip || erregistroaOhikoa) {
+			}*/
+			if (erregistroaVip) {
 				try {
+					Date jd;
+					String Jaiotze_Data;
 					String consultaBezeroa="";
+					SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
 					Statement st = conexion.createStatement();
+					consultaBezeroa = "DELETE FROM tiketa";
+					st.execute(consultaBezeroa);
+					consultaBezeroa = "DELETE FROM vip";
+					st.execute(consultaBezeroa);
+					consultaBezeroa = "DELETE FROM ohikoa";
+					st.execute(consultaBezeroa);
 					consultaBezeroa = "DELETE FROM bezeroa";
 					st.execute(consultaBezeroa);
-					for (int i6 = 0; i6<aVIP.size(); i6++) {
-						Bezeroa b2 = aBezeroa.get(i6);
+					for (int i7 = 0; i7<aVIP.size(); i7++) {
+						VIP b2 = aVIP.get(i7);
 						NAN = b2.getNan();
 						Izena = b2.getIzena();
 						Abizena1 = b2.getAbizena1();
 						Abizena2 = b2.getAbizena2();
-						Jaiotze_Data = b2.getJaiotze_data();
+						jd = b2.getJaiotze_data();
 						Telefonoa = b2.getTelefono();
 						Email = b2.getEmail();
 						Mota = b2.getMota();
+						
+						Jaiotze_Data = dt.format(jd);
+						
 						st.executeUpdate("INSERT INTO bezeroa VALUES ('"+NAN+"','"+Izena+"','"+Abizena1+"','"+Abizena2+"','"+Jaiotze_Data+"','"+Telefonoa+"','"+Email+"','"+Mota+"');");
+					}
+					for (Ohikoa o : aOhikoa) {
+						NAN = o.getNan();
+						int GonbidatuKop = o.getGonbidatukop();
+						consultaBezeroa = "INSERT INTO ohikoa VALUES ('" +NAN+ "', '" +GonbidatuKop+ "');";
+					}
+					for (VIP v : aVIP) {
+						NAN = v.getNan();
+						int Puntuak = v.getPuntuak();
+						double Beherapenak = v.getBeherapenak();
+						consultaBezeroa = "INSERT INTO vip VALUES ('" +NAN+ "', '" +Puntuak+ "', '" +Beherapenak+ "');";
+						st.execute(consultaBezeroa);
+					}
+					for (Tiketak t : aTiketak) {
+						id_Tiket = t.getId_tiket();
+						NAN = t.getNan();
+						double Prezioa = t.getPrezioa();
+						Jesarlekua = t.getJesarlekua();
+						Wifi = t.getWifi();
+						Jesarleku_Mota = t.getTipo_asiento();
+						TV = t.getTV();
+						consultaBezeroa = "INSERT INTO tiketa VALUES ('" +id_Tiket+"', '" +NAN+ "', '" +Prezioa+ "', '" +Jesarlekua+ "', '" +Wifi+ "', '" +Jesarleku_Mota+ "', '" +TV+ "');";
+					}
+				}catch (SQLException e ) {
+					e.printStackTrace();
+					System.out.println("ERROR ERREGISTROA");}
+				}
+			else if (erregistroaOhikoa) {
+				try {
+					Date jd;
+					String Jaiotze_Data;
+					SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+					String consultaBezeroa;
+					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bidaiagentzia", "root", "");
+					Statement st = conexion.createStatement();
+					consultaBezeroa = "DELETE FROM tiketa";
+					st.execute(consultaBezeroa);
+					consultaBezeroa = "DELETE FROM ohikoa";
+					st.execute(consultaBezeroa);
+					consultaBezeroa = "DELETE FROM vip";
+					st.execute(consultaBezeroa);
+					consultaBezeroa = "DELETE FROM bezeroa";
+					st.execute(consultaBezeroa);
+					for (int i7 = 0; i7<aOhikoa.size(); i7++) {
+						Ohikoa o = aOhikoa.get(i7);
+						NAN = o.getNan();
+						Izena = o.getIzena();
+						Abizena1 = o.getAbizena1();
+						Abizena2 = o.getAbizena2();
+						jd = o.getJaiotze_data();
+						Telefonoa = o.getTelefono();
+						Email = o.getEmail();
+						Mota = o.getMota();
+						
+						Jaiotze_Data = dt.format(jd);
+						
+						st.executeUpdate("INSERT INTO bezeroa VALUES ('"+NAN+"','"+Izena+"','"+Abizena1+"','"+Abizena2+"','"+Jaiotze_Data+"','"+Telefonoa+"','"+Email+"','"+Mota+"');");
+					}
+					for (Ohikoa o : aOhikoa) {
+						NAN = o.getNan();
+						int GonbidatuKop = o.getGonbidatukop();
+						
+						consultaBezeroa = "INSERT INTO ohikoa VALUES ('"+NAN+"', '"+GonbidatuKop+"');";
+						st.execute(consultaBezeroa);
+					}
+					for (VIP v : aVIP) {
+						NAN = v.getNan();
+						puntuak = v.getPuntuak();
+						int Beherapenak = v.getBeherapenak();
+					}
+					for (Tiketak t : aTiketak) {
+						id_Tiket = t.getId_tiket();
+						NAN = t.getNan();
+						double Prezioa = t.getPrezioa();
+						Jesarlekua = t.getJesarlekua();
+						Wifi = t.getWifi();
+						Jesarleku_Mota = t.getTipo_asiento();
+						TV = t.getTV();
+						consultaBezeroa = "INSERT INTO tiketa VALUES ('" +id_Tiket+"', '" +NAN+ "', '" +Prezioa+ "', '" +Jesarlekua+ "', '" +Wifi+ "', '" +Jesarleku_Mota+ "', '" +TV+ "');";
 					}
 				}catch (SQLException e ) {
 					e.printStackTrace();
 					System.out.println("ERROR ERREGISTROA");
-				}}
+				}
+			}
 	}
 
 	private static boolean tiketErosketa(Scanner teklatua, ArrayList<Tiketak> aTiketak) {
@@ -743,11 +882,6 @@ public class agentziaMain {
 			while (rs.next()){
 				Helmuga h1 = new Helmuga(rs.getInt("id_Helmuga"),rs.getInt("id_Estantzia"),rs.getString("Izena"));
 				aHelmuga.add(h1);
-				}
-			rs = st.executeQuery("SELECT b.NAN, j.* from bezeroa b, estantzia e, helmuga h, jarduera j where b.NAN = e.NAN and e.id_Estantzia = h.id_Estantzia and h.id_Helmuga = j.id_Helmuga;");
-			while (rs.next()){
-				Jarduera j1 = new Jarduera(rs.getString("NAN"),rs.getInt("id_Jarduera"),rs.getInt("id_Helmuga"),rs.getString("Izena"),rs.getString("Mota"),rs.getInt("Balorazioa"), rs.getString("Eskuragarri"));
-				aJarduera.add(j1);
 				}
 			rs = st.executeQuery("SELECT o.GonbidatuKop, b.* from ohikoa o, bezeroa b where o.NAN = b.NAN;");
 			while (rs.next()){

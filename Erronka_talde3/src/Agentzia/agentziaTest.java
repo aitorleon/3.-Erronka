@@ -7,17 +7,19 @@ import org.junit.jupiter.api.Test;
 
 class agentziaTest {
 
+	Tiketak t = new Tiketak(1,"33333333C", 250, "150A", "Bai", "Turista", "Bai" );
+	
 	@Test
 	void testDeskontua() {	
-		assertEquals(10, agentziaMain.deskontuaFun(10));
+		assertEquals(90.0, Tiketak.kalkulatuDesk(t, 10), 0.01);
 	}
 	@Test
 	void testPrezioFinala() {
-		fail("Not yet implemented");
+		assertEquals(10, Tiketak.deskontuaFun(10)); 
+        assertEquals(20, Tiketak.deskontuaFun(35)); 
+        assertEquals(30, Tiketak.deskontuaFun(85));
+        assertEquals(0, Tiketak.deskontuaFun(0));
 	}
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+	
 
 }

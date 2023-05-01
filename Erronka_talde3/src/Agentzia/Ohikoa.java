@@ -9,14 +9,36 @@ public class Ohikoa extends Bezeroa{
 
 	private int gonbidatukop;
 	
+	/**
+	 * Defektuzko konstruktorea
+	 * @author aitor
+	 */
 	public Ohikoa() {
 		super();
 		this.gonbidatukop=0;
 	}
+	/**
+	 * @author aitor
+	 * @param n Super klaseko NAN zenbakia 
+	 * @param gk Erabiltzaileak izango duen gonbidatu kopurua
+	 */
 	public Ohikoa(String n, int gk) {
 		super(n);
 		this.gonbidatukop=gk;
 	}
+	/**
+	 * Konstruktore pertsonalizatua, hau batez ere erabiliko dugu gure datu basera konektatzeko
+	 * @author aitor
+	 * @param gbkp Erabiltzaileak dituan gonbidatu kopurua
+	 * @param nan Erabiltzailearen nan zenbakia
+	 * @param iz Erabiltzailearen izena
+	 * @param ab1 Erabiltzailearen abizena
+	 * @param ab2 Erabiltzailearen bigarren abizena
+	 * @param jd Erabiltzailearen jaiotze data
+	 * @param telf Erabiltzailearen telefonoa
+	 * @param email Erabiltzailearen email-a
+	 * @param mo Erabiltzaile mota
+	 */
 	public Ohikoa (int gbkp, String nan, String iz, String ab1, String ab2, Date jd, String telf, String email, String mo) {
 		super(nan,iz,ab1,ab2,jd,telf,email,mo);
 		this.gonbidatukop = gbkp;
@@ -44,9 +66,9 @@ public class Ohikoa extends Bezeroa{
 		this.abizena1=teklatua.next();
 		System.out.println("Idatzi zure bigarren abizena:");
 		this.abizena2=teklatua.next();
-		System.out.println("Idatzi zure jaiotze data(yyyy/mm/dd):");
+		System.out.println("Idatzi zure jaiotze data(yyyy-mm-dd):");
 		try {
-			this.jaiotze_data = new SimpleDateFormat("dd/MM/yyyy").parse(teklatua.next());
+			this.Jaiotze_Data = new SimpleDateFormat("yyyy-mm-dd").parse(teklatua.next());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,7 +92,7 @@ public class Ohikoa extends Bezeroa{
 		System.out.println("Izena: " + this.izena);
 		System.out.println("Abizena: " + this.abizena1);
 		System.out.println("Bigarren abizena: " + this.abizena2);
-		System.out.println("Zure jaiotze data: " + this.jaiotze_data);
+		System.out.println("Zure jaiotze data: " + this.Jaiotze_Data);
 		System.out.println("Zure korreo elektronikoa: " + this.email);
 		System.out.println("Zure telefonoa: " + this.telefono);
 		System.out.println("Gonbidatu dituzun pertsona kopurua: " + this.gonbidatukop);

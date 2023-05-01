@@ -5,16 +5,31 @@ public class Helmuga {
 	private int id_Estantzia;
 	private String izena;
 	
+	/**
+	 * Defektuzko konstruktorea
+	 * @author aitor
+	 */
 	public Helmuga () {
 		this.id_Helmuga = 0;
 		this.id_Estantzia = 0;
 		this.izena = "";
 	}
+	/**
+	 * Konstruktore pertsonalizatua, hau erabiliko dugu gure Helmuga objetuak gure modura editatzeko
+	 * @param idH Helmugaren id zenbakia identifikatzeko
+	 * @param idE Dagokion estantzia id zenbakia identifikatzeko
+	 * @param iz Dagokion izena jakitzeko
+	 * @author aitor
+	 */
 	public Helmuga (int idH, int idE, String iz) {
 		this.id_Helmuga = idH;
 		this.id_Estantzia = idE;
 		this.izena = iz;
 	}
+	/*
+	 * Kopia konstruktorea
+	 * @author aitor
+	 */
 	public Helmuga (Helmuga h) {
 		this.id_Helmuga = h.id_Helmuga;
 		this.id_Estantzia = h.id_Estantzia;

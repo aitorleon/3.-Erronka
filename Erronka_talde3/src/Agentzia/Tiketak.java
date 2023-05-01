@@ -11,6 +11,10 @@ public class Tiketak extends Bezeroa implements Bez{
 	private String tipo_asiento;
 	private String jesarlekua;
 	
+	/**
+	 * Defektuzko konstruktorea
+	 * @author Iker
+	 */
 	public Tiketak() {
 		super();
 		this.id_tiket=0;
@@ -21,8 +25,17 @@ public class Tiketak extends Bezeroa implements Bez{
 		this.jesarlekua="";
 		this.nan = "";
 	}
-	//Tiketak t1 = new Tiketak(rs.getInt("id_Tiket"),rs.getString("NAN"),rs.getDouble("Prezioa"),rs.getString("Jesarlekua"),rs.getString("Wifi"),rs.getString("Jesarleku_Mota"),rs.getString("TV"));
 
+	/**
+	 * @author Iker
+	 * @param idt Tiketaren id zenbakia
+	 * @param n Tiketaren NAN zenbakia jakitzeko
+	 * @param prz Tiketaren prezioa zehazteko
+	 * @param jes Tiketa zer jesarlekua izango duen jakitzeko
+	 * @param wifi Tiketa wifia izango duen jakitzeko
+	 * @param ta Tiketa zer motatakoa izango den
+	 * @param tv Tiketa TV-a izango duen zehazteko
+	 */
 	public Tiketak(int idt,String n,  double prz,String jes,String wifi,String ta, String tv) {
 		super(n);
 		this.id_tiket=idt;
@@ -32,6 +45,11 @@ public class Tiketak extends Bezeroa implements Bez{
 		this.tipo_asiento=ta;
 		this.jesarlekua=jes;
 	}
+	/**
+	 * Kopia konstruktorea
+	 * @param t Tiketak motatako objetua
+	 * @author Iker
+	 */
 	public Tiketak (Tiketak t) {
 		super();
 		this.id_tiket = t.id_tiket;
@@ -90,6 +108,10 @@ public class Tiketak extends Bezeroa implements Bez{
 		this.jesarlekua = jesarlekua;
 	}
 
+	/**
+	 * @author Iker
+	 * @param teklatua gure tiket bat erreserbatu nahi dugunean gauzak eskaneatzeko 
+	 */
 	@Override
 	public void irakurri(Scanner teklatua) {
 		this.prezioa = 0;
@@ -126,7 +148,9 @@ public class Tiketak extends Bezeroa implements Bez{
 		puntuak = puntuak + 5;
 		System.out.println("Eskerrikasko, tiketaren prezioa " + this.prezioa + " da.");
 	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public void pantailaratu() {
 		// TODO Auto-generated method stub
@@ -146,7 +170,12 @@ public class Tiketak extends Bezeroa implements Bez{
 		}
 		System.out.println("---------------------------------------------------------");
 	}
-	
+	/**
+	 * 
+	 * @param puntuak Bezeroak dituen puntuak
+	 * @return Puntuengatik jasotako kalkulu bitartez, dagokion deskontua
+	 * @author aitor
+	 */
 	public static int deskontuaFun(int puntuak) {
 		int deskontua=0;
 		if (puntuak > 1 && puntuak < 25) {
@@ -162,6 +191,13 @@ public class Tiketak extends Bezeroa implements Bez{
 		return deskontua;
 	}
 	
+	/**
+	 * 	
+	 * @param tiket Tiket motatako objetua
+	 * @param deskontua deskontuaFun-etik jasotako zenbakia
+	 * @return Tiketaren prezio finala
+	 * @author aitor
+	 */
 	public static double kalkulatuDesk(Tiketak tiket, int deskontua) {
 		double prezioFin = 0;
 		if (deskontua == 10) {
@@ -177,11 +213,10 @@ public class Tiketak extends Bezeroa implements Bez{
 	}
 
 	@Override
-	public double kalkulatuTotala(double kalkulatuDesk) {
+	public double kalkulatuTotala() {
 		// TODO Auto-generated method stub
-		double prezioFin = kalkulatuDesk;
-		prezioFin = (prezioFin + (prezioFin*BEZ));
-		
-		return prezioFin;
+		double prezioFinala;
+		prezioFinala = kalkulatuTotala()*BEZ;
+		return prezioFinala;
 	}
 }
